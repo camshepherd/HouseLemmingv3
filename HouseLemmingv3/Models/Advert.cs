@@ -21,7 +21,6 @@ namespace HouseLemmingv3.Models
             public ApplicationUser ApplicationUser { get; set; }
 
             public List<Request> Requests { get; set; }
-            public List<Image> Images { get; set; }
 
             [Required]
             [MaxLength(140)]

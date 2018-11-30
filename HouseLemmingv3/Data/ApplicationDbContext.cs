@@ -18,8 +18,7 @@ namespace HouseLemmingv3.Data
 
         public DbSet<Advert> Adverts { get; set; }
         public DbSet<Request> Requests { get; set; }
-        public DbSet<Image> Images { get; set; }
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<HouseLemmingv3.Areas.Identity.Data.ApplicationUser> ApplicationUser { get; set; }
 
        /* protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
