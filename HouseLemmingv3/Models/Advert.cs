@@ -14,9 +14,9 @@ namespace HouseLemmingv3.Models
             [Key]
             [Required] public Guid AdvertId { get; set; }
 
-            public ICollection<Request> Requests { get; set; }
+            public List<Request> Requests { get; set; }
 
-            [Required] public Guid OwnerUserId { get; set; }
+            [Required] public Guid ApplicationUserId { get; set; }
             public ApplicationUser ApplicationUser { get; set; }
 
             [Required]

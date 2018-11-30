@@ -96,7 +96,7 @@ namespace HouseLemmingv3.Migrations
                     b.Property<string>("AddrPostCode")
                         .IsRequired();
 
-                    b.Property<Guid?>("ApplicationUserId");
+                    b.Property<Guid>("ApplicationUserId");
 
                     b.Property<string>("ContactEmail")
                         .IsRequired();
@@ -120,8 +120,6 @@ namespace HouseLemmingv3.Migrations
 
                     b.Property<int>("NumToilets");
 
-                    b.Property<Guid>("OwnerUserId");
-
                     b.Property<float>("PriceMonthly");
 
                     b.Property<DateTime>("StartDate");
@@ -140,7 +138,7 @@ namespace HouseLemmingv3.Migrations
                     b.Property<Guid>("RequestId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("AdvertId");
+                    b.Property<Guid>("AdvertId");
 
                     b.Property<int>("Approval");
 
@@ -150,8 +148,6 @@ namespace HouseLemmingv3.Migrations
 
                     b.Property<string>("Feedback")
                         .HasMaxLength(140);
-
-                    b.Property<Guid>("SubjectAdvertId");
 
                     b.HasKey("RequestId");
 
@@ -271,14 +267,16 @@ namespace HouseLemmingv3.Migrations
                 {
                     b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("Adverts")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HouseLemmingv3.Models.Request", b =>
                 {
                     b.HasOne("HouseLemmingv3.Models.Advert", "Advert")
                         .WithMany("Requests")
-                        .HasForeignKey("AdvertId");
+                        .HasForeignKey("AdvertId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

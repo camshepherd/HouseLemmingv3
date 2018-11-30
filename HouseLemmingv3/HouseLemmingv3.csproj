@@ -34,6 +34,24 @@
     <Compile Remove="Migrations\20181130014933_Coraline.Designer.cs" />
     <Compile Remove="Migrations\20181130015143_Harold.cs" />
     <Compile Remove="Migrations\20181130015143_Harold.Designer.cs" />
+    <Compile Remove="Migrations\20181130031518_Coraline.cs" />
+    <Compile Remove="Migrations\20181130031518_Coraline.Designer.cs" />
+    <Compile Remove="Migrations\20181130031812_Mike.cs" />
+    <Compile Remove="Migrations\20181130031812_Mike.Designer.cs" />
+    <Compile Remove="Migrations\20181130032251_Coraline.cs" />
+    <Compile Remove="Migrations\20181130032251_Coraline.Designer.cs" />
+    <Compile Remove="Migrations\20181130033556_Coraline.cs" />
+    <Compile Remove="Migrations\20181130033556_Coraline.Designer.cs" />
+    <Compile Remove="Migrations\20181130033658_Wibee.cs" />
+    <Compile Remove="Migrations\20181130033658_Wibee.Designer.cs" />
+    <Compile Remove="Migrations\20181130034319_Coraline.cs" />
+    <Compile Remove="Migrations\20181130034319_Coraline.Designer.cs" />
+    <Compile Remove="Migrations\20181130034758_thtyt.cs" />
+    <Compile Remove="Migrations\20181130034758_thtyt.Designer.cs" />
+    <Compile Remove="Migrations\20181130035112_fjfjhsls.cs" />
+    <Compile Remove="Migrations\20181130035112_fjfjhsls.Designer.cs" />
+    <Compile Remove="Migrations\20181130035342_fdiiss.cs" />
+    <Compile Remove="Migrations\20181130035342_fdiiss.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

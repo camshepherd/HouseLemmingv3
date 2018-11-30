@@ -13,7 +13,7 @@ namespace HouseLemmingv3.Models
         [Required]
         public Guid RequestId { get; set; }
 
-        [Required] public Guid SubjectAdvertId { get; set; }
+        [Required] public Guid AdvertId { get; set; }
         public Advert Advert { get; set; }
 
         [MaxLength(140)] public string Feedback { get; set; }

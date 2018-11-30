@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HouseLemmingv3.Migrations
 {
-    public partial class Coraline : Migration
+    public partial class SuperDuperMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -75,8 +75,7 @@ namespace HouseLemmingv3.Migrations
                 columns: table => new
                 {
                     AdvertId = table.Column<Guid>(nullable: false),
-                    OwnerUserId = table.Column<Guid>(nullable: false),
-                    ApplicationUserId = table.Column<Guid>(nullable: true),
+                    ApplicationUserId = table.Column<Guid>(nullable: false),
                     DescShort = table.Column<string>(maxLength: 140, nullable: false),
                     DescLong = table.Column<string>(maxLength: 10000, nullable: false),
                     NumToilets = table.Column<int>(nullable: false),
@@ -102,7 +101,7 @@ namespace HouseLemmingv3.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,8 +194,7 @@ namespace HouseLemmingv3.Migrations
                 columns: table => new
                 {
                     RequestId = table.Column<Guid>(nullable: false),
-                    SubjectAdvertId = table.Column<Guid>(nullable: false),
-                    AdvertId = table.Column<Guid>(nullable: true),
+                    AdvertId = table.Column<Guid>(nullable: false),
                     Feedback = table.Column<string>(maxLength: 140, nullable: true),
                     Approval = table.Column<int>(nullable: false),
                     DateCreation = table.Column<DateTime>(nullable: false),
@@ -210,7 +208,7 @@ namespace HouseLemmingv3.Migrations
                         column: x => x.AdvertId,
                         principalTable: "Adverts",
                         principalColumn: "AdvertId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

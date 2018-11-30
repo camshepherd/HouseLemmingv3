@@ -17,7 +17,7 @@ namespace HouseLemmingv3.Areas.Identity.Data
             public string Firstname { get; set; }
             public string Lastname { get; set; }
 
-            public ICollection<Advert> Adverts { get; set; }
+            public List<Advert> Adverts { get; set; }
         }
     }
 }
