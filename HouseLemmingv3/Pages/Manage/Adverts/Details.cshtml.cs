@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using HouseLemmingv3.Data;
+using HouseLemmingv3.Models;
+
+namespace HouseLemmingv3.Pages.Manage
+{
+    public class DetailsModel : PageModel
+    {
+        private readonly HouseLemmingv3.Data.ApplicationDbContext _context;
+
+        public DetailsModel(HouseLemmingv3.Data.ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public Advert Advert { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Advert = await _context.Adverts
+                .Include(a => a.ApplicationUser).FirstOrDefaultAsync(m => m.AdvertId == id);
+
+            if (Advert == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+    }
+}

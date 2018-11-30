@@ -1,0 +1,175 @@
+﻿@page
+@model HouseLemmingv3.Pages.Manage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].ApplicationUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].DescShort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].DescLong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].NumToilets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].NumRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].PriceMonthly)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].Deposit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].ContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].ContactEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].AddrLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].AddrLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].AddrCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].AddrCounty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advert[0].AddrPostCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Advert) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescShort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescLong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumToilets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceMonthly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deposit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddrLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddrLine2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddrCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddrCounty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddrPostCode)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AdvertId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AdvertId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@foreach (var item in Model.Advert)
+{
+<div class="card">
+    <img src="~/images/house1.jpg" alt="Avatar" style="width:300px">
+    <div class="cardContainer">
+        <h4><b> @Html.DisplayFor(modelItem => item.PriceMonthly)</b></h4>
+        <hr>
+        <p>@Html.DisplayFor(modelItem => item.DescShort)</p>
+        <p>@Html.DisplayFor(modelItem => item.AddrLine1)</p>
+    </div>
+</div>
+}
+
+@foreach (var item in Model.Advert)
+{
+<div class="blog-card">
+    <div class="meta">
+        <div class="photo" style="background-image: url('../images/house1.jpg')"></div>
+        <ul class="details">
+            <li class="author"><a href="#">John Doe</a></li>
+            <li class="date">@Html.DisplayFor(modelItem => item.StartDate) - @Html.DisplayFor(modelItem => item.EndDate)</li>
+            <!--<li class="tags">
+                <ul>
+                    <li><a href="#">Any</a></li>
+                    <li><a href="#">Useful</a></li>
+                    <li><a href="#">Fact</a></li>
+                    <li><a href="#">Here</a></li>
+                </ul>
+            </li>-->
+        </ul>
+    </div>
+    <div class="description">
+        <h1>@Html.DisplayFor(modelItem => item.PriceMonthly)</h1>
+        <h2>@Html.DisplayFor(modelItem => item.AddrLine1)</h2>
+        <p> @Html.DisplayFor(modelItem => item.DescShort)</p>
+        <p class="read-more">
+            <a href="#">Read More</a>
+        </p>
+    </div>
+</div>
+}

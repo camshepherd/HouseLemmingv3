@@ -4,20 +4,23 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using HouseLemmingv3.Areas.Identity.Data;
+
+
 
 namespace HouseLemmingv3.Models
 {
     public class Advert
     {
             [Key]
-            [Required] public Guid AdvertId { get; set; }
-
-            public List<Request> Requests { get; set; }
+            [Required]
+            public Guid AdvertId { get; set; }
 
             [Required] public Guid ApplicationUserId { get; set; }
             public ApplicationUser ApplicationUser { get; set; }
+
+            public List<Request> Requests { get; set; }
 
             [Required]
             [MaxLength(140)]

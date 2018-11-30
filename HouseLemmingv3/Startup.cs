@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HouseLemmingv3.Areas.Identity.Data;
-using HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -50,7 +49,7 @@ namespace HouseLemmingv3
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Administrator"));
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("RequireSupervisorRole", policy => policy.RequireRole("Supervisor"));
                 options.AddPolicy("RequireLandlordRole", policy => policy.RequireRole("Landlord"));
                 options.AddPolicy("RequiredStudentRole", policy => policy.RequireRole("Student"));

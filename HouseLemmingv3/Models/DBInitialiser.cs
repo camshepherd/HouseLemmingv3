@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data;
+using HouseLemmingv3.Areas.Identity.Data;
 using HouseLemmingv3.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +14,8 @@ namespace HouseLemmingv3.Models
     {
         public static async Task InitialiseAsync(ApplicationDbContext context, IServiceProvider serviceProvider)
         {
+            Console.WriteLine("AAAAAAAAAAAAA");
+
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
@@ -29,7 +31,7 @@ namespace HouseLemmingv3.Models
                 }
             }
             {
-                Console.WriteLine("QQQQQQQQQQQ");
+                Console.WriteLine("BBBBBBBBBBBBB");
                 //Landlords
                 if (userManager.FindByEmailAsync("randy@tegridy.com").Result == null)
                 {
@@ -116,7 +118,7 @@ namespace HouseLemmingv3.Models
                     if (result.Succeeded)
                     {
                         userManager.AddToRoleAsync(user,
-                            "Administrator").Wait();
+                            "Admin").Wait();
                     }
                 }
                 if (userManager.FindByEmailAsync("mat@fakesite.co.uk").Result == null)
@@ -133,7 +135,7 @@ namespace HouseLemmingv3.Models
                     if (result.Succeeded)
                     {
                         userManager.AddToRoleAsync(user,
-                            "Administrator").Wait();
+                            "Admin").Wait();
                     }
                 }
 
@@ -388,11 +390,11 @@ namespace HouseLemmingv3.Models
                             }
                         );
 
-                        Console.WriteLine("TTTTTTT");
+                        Console.WriteLine("CCCCCCCC");
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("YYYYYYYYYYYY" + e.Data);
+                        Console.WriteLine("DDDDDDDDDD" + e.Data);
                     }
 
                     context.SaveChanges();

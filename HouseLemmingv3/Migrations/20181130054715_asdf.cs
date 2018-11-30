@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HouseLemmingv3.Migrations
 {
-    public partial class SuperDuperMigration : Migration
+    public partial class asdf : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

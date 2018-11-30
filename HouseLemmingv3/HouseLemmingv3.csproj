@@ -6,62 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181129223808_Initial.cs" />
-    <Compile Remove="Data\Migrations\20181129223808_Initial.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181129230103_DoStuff.cs" />
-    <Compile Remove="Data\Migrations\20181129230103_DoStuff.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181130002851_StuffHere.cs" />
-    <Compile Remove="Data\Migrations\20181130002851_StuffHere.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181130004645_MoreStuff.cs" />
-    <Compile Remove="Data\Migrations\20181130004645_MoreStuff.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181130005224_MoreStuff3.cs" />
-    <Compile Remove="Data\Migrations\20181130005224_MoreStuff3.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181130010315_DoProperStuff.cs" />
-    <Compile Remove="Data\Migrations\20181130010315_DoProperStuff.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181130011256_New.cs" />
-    <Compile Remove="Data\Migrations\20181130011256_New.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181130011618_New2.cs" />
-    <Compile Remove="Data\Migrations\20181130011618_New2.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181130011950_DoStuff.cs" />
-    <Compile Remove="Data\Migrations\20181130011950_DoStuff.Designer.cs" />
-    <Compile Remove="Migrations\20181130012110_New2.cs" />
-    <Compile Remove="Migrations\20181130012110_New2.Designer.cs" />
-    <Compile Remove="Migrations\20181130014317_Barry.cs" />
-    <Compile Remove="Migrations\20181130014317_Barry.Designer.cs" />
-    <Compile Remove="Migrations\20181130014933_Coraline.cs" />
-    <Compile Remove="Migrations\20181130014933_Coraline.Designer.cs" />
-    <Compile Remove="Migrations\20181130015143_Harold.cs" />
-    <Compile Remove="Migrations\20181130015143_Harold.Designer.cs" />
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    <Compile Remove="Migrations\20181130031518_Coraline.cs" />
-    <Compile Remove="Migrations\20181130031518_Coraline.Designer.cs" />
-    <Compile Remove="Migrations\20181130031812_Mike.cs" />
-    <Compile Remove="Migrations\20181130031812_Mike.Designer.cs" />
-    <Compile Remove="Migrations\20181130032251_Coraline.cs" />
-    <Compile Remove="Migrations\20181130032251_Coraline.Designer.cs" />
-    <Compile Remove="Migrations\20181130033556_Coraline.cs" />
-    <Compile Remove="Migrations\20181130033556_Coraline.Designer.cs" />
-    <Compile Remove="Migrations\20181130033658_Wibee.cs" />
-    <Compile Remove="Migrations\20181130033658_Wibee.Designer.cs" />
-    <Compile Remove="Migrations\20181130034319_Coraline.cs" />
-    <Compile Remove="Migrations\20181130034319_Coraline.Designer.cs" />
-    <Compile Remove="Migrations\20181130034758_thtyt.cs" />
-    <Compile Remove="Migrations\20181130034758_thtyt.Designer.cs" />
-    <Compile Remove="Migrations\20181130035112_fjfjhsls.cs" />
-    <Compile Remove="Migrations\20181130035112_fjfjhsls.Designer.cs" />
-    <Compile Remove="Migrations\20181130035342_fdiiss.cs" />
-    <Compile Remove="Migrations\20181130035342_fdiiss.Designer.cs" />
-=======
-    <Compile Remove="Migrations\20181130022246_PlisWork.cs" />
-    <Compile Remove="Migrations\20181130022246_PlisWork.Designer.cs" />
->>>>>>> Stashed changes
-=======
-    <Compile Remove="Migrations\20181130022246_PlisWork.cs" />
-    <Compile Remove="Migrations\20181130022246_PlisWork.Designer.cs" />
->>>>>>> Stashed changes
+    <Compile Remove="Migrations\20181130023338_test.cs" />
+    <Compile Remove="Migrations\20181130023338_test.Designer.cs" />
+    <Compile Remove="Migrations\20181130040920_SuperDuperMigration.cs" />
+    <Compile Remove="Migrations\20181130040920_SuperDuperMigration.Designer.cs" />
+    <Compile Remove="Migrations\20181130051513_1.cs" />
+    <Compile Remove="Migrations\20181130051513_1.Designer.cs" />
+    <Compile Remove="Migrations\20181130052453_1.cs" />
+    <Compile Remove="Migrations\20181130052453_1.Designer.cs" />
+    <Compile Remove="Migrations\20181130054554_1.cs" />
+    <Compile Remove="Migrations\20181130054554_1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,7 +30,10 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
-    <Folder Include="Pages\Manage\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
 </Project>

@@ -10,14 +10,11 @@ using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 
 namespace HouseLemmingv3.Areas.Identity.Data
 {
-    namespace WebApp1.Areas.Identity.Data
+    public class ApplicationUser : IdentityUser<Guid>
     {
-        public class ApplicationUser : IdentityUser<Guid>
-        {
-            public string Firstname { get; set; }
-            public string Lastname { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
 
-            public List<Advert> Adverts { get; set; }
-        }
+        public List<Advert> Adverts { get; set; }
     }
 }

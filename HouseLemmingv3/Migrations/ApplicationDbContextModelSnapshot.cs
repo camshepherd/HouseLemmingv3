@@ -19,7 +19,7 @@ namespace HouseLemmingv3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser", b =>
+            modelBuilder.Entity("HouseLemmingv3.Areas.Identity.Data.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -265,7 +265,7 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("HouseLemmingv3.Models.Advert", b =>
                 {
-                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
+                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("Adverts")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -289,7 +289,7 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser")
+                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -297,7 +297,7 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser")
+                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -310,7 +310,7 @@ namespace HouseLemmingv3.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser")
+                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -318,7 +318,7 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser")
+                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

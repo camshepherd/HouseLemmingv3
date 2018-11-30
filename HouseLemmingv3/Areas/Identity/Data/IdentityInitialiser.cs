@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data;
 
 namespace HouseLemmingv3.Areas.Identity.Data
 {
@@ -113,7 +112,7 @@ namespace HouseLemmingv3.Areas.Identity.Data
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user,
-                        "Administrator").Wait();
+                        "Admin").Wait();
                 }
             }
             if (userManager.FindByEmailAsync("mat@fakesite.co.uk").Result == null)
@@ -125,12 +124,12 @@ namespace HouseLemmingv3.Areas.Identity.Data
                 user.Lastname = "Marton";
 
                 IdentityResult result = userManager.CreateAsync
-                    (user, "fjfnHJf8d(").Result;
+                    (user, "fjfnHJf8d£").Result;
 
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user,
-                        "Administrator").Wait();
+                        "Admin").Wait();
                 }
             }
         }
@@ -147,10 +146,10 @@ namespace HouseLemmingv3.Areas.Identity.Data
             }
 
 
-            if (!roleManager.RoleExistsAsync("Administrator").Result)
+            if (!roleManager.RoleExistsAsync("Admin").Result)
             {
                 IdentityRole role = new IdentityRole();
-                role.Name = "Administrator";
+                role.Name = "Admin";
                 IdentityResult roleResult = roleManager.
                     CreateAsync(role).Result;
             }
