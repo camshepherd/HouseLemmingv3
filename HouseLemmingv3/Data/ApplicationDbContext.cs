@@ -31,5 +31,8 @@ namespace HouseLemmingv3.Data
                 .HasMany(u => u.Requests)
                 .WithOne(t => t.Advert);
         }*/
+
+
+
     }
 }
