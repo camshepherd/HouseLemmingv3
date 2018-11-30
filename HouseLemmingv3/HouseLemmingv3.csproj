@@ -16,6 +16,8 @@
     <Compile Remove="Migrations\20181130052453_1.Designer.cs" />
     <Compile Remove="Migrations\20181130054554_1.cs" />
     <Compile Remove="Migrations\20181130054554_1.Designer.cs" />
+    <Compile Remove="Migrations\20181130054715_asdf.cs" />
+    <Compile Remove="Migrations\20181130054715_asdf.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

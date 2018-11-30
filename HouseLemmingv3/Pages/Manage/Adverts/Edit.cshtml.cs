@@ -23,6 +23,8 @@ namespace HouseLemmingv3.Pages.Manage
         [BindProperty]
         public Advert Advert { get; set; }
 
+        public Guid applicationUserId { get; set; }
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
@@ -32,6 +34,7 @@ namespace HouseLemmingv3.Pages.Manage
 
             Advert = await _context.Adverts
                 .Include(a => a.ApplicationUser).FirstOrDefaultAsync(m => m.AdvertId == id);
+            applicationUserId = Advert.ApplicationUserId;
 
             if (Advert == null)
             {
@@ -49,7 +52,8 @@ namespace HouseLemmingv3.Pages.Manage
             }
 
             _context.Attach(Advert).State = EntityState.Modified;
-
+            _context.Attach(Advert).State = EntityState.Unchanged;
+            
             try
             {
                 await _context.SaveChangesAsync();
