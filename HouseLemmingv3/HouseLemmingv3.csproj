@@ -6,9 +6,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181129223808_Initial.cs" />
+    <Compile Remove="Data\Migrations\20181129223808_Initial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181129230103_DoStuff.cs" />
+    <Compile Remove="Data\Migrations\20181129230103_DoStuff.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130002851_StuffHere.cs" />
+    <Compile Remove="Data\Migrations\20181130002851_StuffHere.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130004645_MoreStuff.cs" />
+    <Compile Remove="Data\Migrations\20181130004645_MoreStuff.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130005224_MoreStuff3.cs" />
+    <Compile Remove="Data\Migrations\20181130005224_MoreStuff3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130010315_DoProperStuff.cs" />
+    <Compile Remove="Data\Migrations\20181130010315_DoProperStuff.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130011256_New.cs" />
+    <Compile Remove="Data\Migrations\20181130011256_New.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130011618_New2.cs" />
+    <Compile Remove="Data\Migrations\20181130011618_New2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181130011950_DoStuff.cs" />
+    <Compile Remove="Data\Migrations\20181130011950_DoStuff.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>
