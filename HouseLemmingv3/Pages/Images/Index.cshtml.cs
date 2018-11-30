@@ -24,6 +24,7 @@ namespace HouseLemmingv3.Pages.Images
         [BindProperty]
         public FileUpload FileUpload { get; set; }
 
+        [BindProperty]
         public Guid AdvertGuid { get; set; }
 
         [BindProperty]public Image Image { get; set; }

@@ -21,7 +21,7 @@ namespace HouseLemmingv3.Pages.Manage.Requests
 
         public IActionResult OnGet()
         {
-        ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrCity");
+        ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrLine1");
             return Page();
         }
 
