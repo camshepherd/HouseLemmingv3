@@ -1,0 +1,62 @@
+﻿@page
+@model HouseLemmingv3.Pages.Images.IndexModel
+
+@{
+    ViewData["Title"] = "Images";
+}
+
+<h2>Images</h2>
+<hr />
+
+<h3>Upload Images</h3>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="AdvertGuid" class="control-label"></label>
+                <select asp-for="AdvertGuid" class="form-control" asp-items="ViewBag.AdvertId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileUpload.Title" class="control-label"></label>
+                <input asp-for="FileUpload.Title" type="text" class="form-control" />
+                <span asp-validation-for="FileUpload.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileUpload.ImageFile" class="control-label"></label>
+                <input asp-for="FileUpload.ImageFile" type="file" class="form-control" style="height: auto" />
+                <span asp-validation-for="FileUpload.ImageFile" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Upload" class="btn btn-default" />
+        </form>
+    </div>
+</div>
+
+<h3>Loaded Schedules</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Images[0].FileName)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Images)
+        {
+            <tr>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.FileName">Delete</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

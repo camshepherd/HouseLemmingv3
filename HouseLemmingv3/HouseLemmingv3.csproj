@@ -18,6 +18,16 @@
     <Compile Remove="Migrations\20181130054554_1.Designer.cs" />
     <Compile Remove="Migrations\20181130054715_asdf.cs" />
     <Compile Remove="Migrations\20181130054715_asdf.Designer.cs" />
+    <Compile Remove="Migrations\20181130142155_Coraline.cs" />
+    <Compile Remove="Migrations\20181130142155_Coraline.Designer.cs" />
+    <Compile Remove="Migrations\20181130174015_Coraline.cs" />
+    <Compile Remove="Migrations\20181130174015_Coraline.Designer.cs" />
+    <Compile Remove="Migrations\20181130175603_Wibee.cs" />
+    <Compile Remove="Migrations\20181130175603_Wibee.Designer.cs" />
+    <Compile Remove="Migrations\20181130180035_Wybie.cs" />
+    <Compile Remove="Migrations\20181130180035_Wybie.Designer.cs" />
+    <Compile Remove="Migrations\20181130180250_Wybie.cs" />
+    <Compile Remove="Migrations\20181130180250_Wybie.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

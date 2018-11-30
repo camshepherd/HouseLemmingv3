@@ -2,10 +2,17 @@
 @model HouseLemmingv3.Pages.Manage.Requests.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Active Requests";
 }
 
-<h2>Index</h2>
+<h2>Open Requests</h2>
+<form>
+    <p>
+        Approval Identifier <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+        (0 = disapproved, 1 = unaddressed, 2 = approved)
+    </p>
+</form>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -14,28 +21,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].Advert)
+                @Html.DisplayNameFor(model => model.Requests[0].Advert)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].Feedback)
+                @Html.DisplayNameFor(model => model.Requests[0].Feedback)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].Approval)
+                @Html.DisplayNameFor(model => model.Requests[0].Approval)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].DateCreation)
+                @Html.DisplayNameFor(model => model.Requests[0].DateCreation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].DateResponse)
+                @Html.DisplayNameFor(model => model.Requests[0].DateResponse)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Request) {
+@foreach (var item in Model.Requests) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Advert.AddrCity)
+                <a asp-page="../Adverts/Details" asp-route-id="@item.AdvertId">@Html.DisplayFor(modelItem => item.Advert.AddrLine1)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Feedback)
