@@ -34,6 +34,7 @@
     <Compile Remove="Migrations\20181130014933_Coraline.Designer.cs" />
     <Compile Remove="Migrations\20181130015143_Harold.cs" />
     <Compile Remove="Migrations\20181130015143_Harold.Designer.cs" />
+<<<<<<< Updated upstream
     <Compile Remove="Migrations\20181130031518_Coraline.cs" />
     <Compile Remove="Migrations\20181130031518_Coraline.Designer.cs" />
     <Compile Remove="Migrations\20181130031812_Mike.cs" />
@@ -52,6 +53,10 @@
     <Compile Remove="Migrations\20181130035112_fjfjhsls.Designer.cs" />
     <Compile Remove="Migrations\20181130035342_fdiiss.cs" />
     <Compile Remove="Migrations\20181130035342_fdiiss.Designer.cs" />
+=======
+    <Compile Remove="Migrations\20181130022246_PlisWork.cs" />
+    <Compile Remove="Migrations\20181130022246_PlisWork.Designer.cs" />
+>>>>>>> Stashed changes
   </ItemGroup>
 
   <ItemGroup>
