@@ -23,6 +23,8 @@ namespace HouseLemmingv3.Pages.Manage.Requests
         [BindProperty]
         public Request Request { get; set; }
 
+        public Guid advertId;
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
@@ -49,6 +51,7 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             }
 
             _context.Attach(Request).State = EntityState.Modified;
+            _context.Attach(Request).State = EntityState.Unchanged;
 
             try
             {
