@@ -76,9 +76,8 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("HouseLemmingv3.Models.Advert", b =>
                 {
-                    b.Property<int>("AdvertId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("AdvertId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("AddrCity")
                         .IsRequired()
@@ -121,7 +120,7 @@ namespace HouseLemmingv3.Migrations
 
                     b.Property<int>("NumToilets");
 
-                    b.Property<Guid>("OwnerId");
+                    b.Property<Guid>("OwnerUserId");
 
                     b.Property<float>("PriceMonthly");
 
@@ -138,11 +137,10 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("HouseLemmingv3.Models.Request", b =>
                 {
-                    b.Property<int>("RequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("RequestId")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AdvertId");
+                    b.Property<Guid?>("AdvertId");
 
                     b.Property<int>("Approval");
 
@@ -153,7 +151,7 @@ namespace HouseLemmingv3.Migrations
                     b.Property<string>("Feedback")
                         .HasMaxLength(140);
 
-                    b.Property<int>("SubjectId");
+                    b.Property<Guid>("SubjectAdvertId");
 
                     b.HasKey("RequestId");
 
@@ -271,14 +269,14 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("HouseLemmingv3.Models.Advert", b =>
                 {
-                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser")
+                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("Adverts")
                         .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("HouseLemmingv3.Models.Request", b =>
                 {
-                    b.HasOne("HouseLemmingv3.Models.Advert")
+                    b.HasOne("HouseLemmingv3.Models.Advert", "Advert")
                         .WithMany("Requests")
                         .HasForeignKey("AdvertId");
                 });

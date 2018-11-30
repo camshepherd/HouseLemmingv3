@@ -4,39 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HouseLemmingv3.Migrations
 {
-    public partial class New2 : Migration
+    public partial class Coraline : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Adverts",
-                columns: table => new
-                {
-                    AdvertId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<string>(nullable: false),
-                    DescShort = table.Column<string>(maxLength: 140, nullable: false),
-                    DescLong = table.Column<string>(maxLength: 10000, nullable: false),
-                    NumToilets = table.Column<int>(nullable: false),
-                    NumRooms = table.Column<int>(nullable: false),
-                    PriceMonthly = table.Column<float>(nullable: false),
-                    Deposit = table.Column<float>(nullable: false),
-                    StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    ContactNumber = table.Column<string>(nullable: false),
-                    ContactEmail = table.Column<string>(nullable: false),
-                    AddrLine1 = table.Column<string>(maxLength: 100, nullable: false),
-                    AddrLine2 = table.Column<string>(maxLength: 100, nullable: true),
-                    AddrCity = table.Column<string>(maxLength: 60, nullable: false),
-                    AddrCounty = table.Column<string>(maxLength: 30, nullable: true),
-                    AddrPostCode = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adverts", x => x.AdvertId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -79,30 +50,6 @@ namespace HouseLemmingv3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Requests",
-                columns: table => new
-                {
-                    RequestId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    SubjectId = table.Column<int>(nullable: false),
-                    Feedback = table.Column<string>(maxLength: 140, nullable: true),
-                    Approval = table.Column<int>(nullable: false),
-                    DateCreation = table.Column<DateTime>(nullable: false),
-                    DateResponse = table.Column<DateTime>(nullable: false),
-                    AdvertId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Requests", x => x.RequestId);
-                    table.ForeignKey(
-                        name: "FK_Requests_Adverts_AdvertId",
-                        column: x => x.AdvertId,
-                        principalTable: "Adverts",
-                        principalColumn: "AdvertId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -121,6 +68,41 @@ namespace HouseLemmingv3.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Adverts",
+                columns: table => new
+                {
+                    AdvertId = table.Column<Guid>(nullable: false),
+                    OwnerUserId = table.Column<Guid>(nullable: false),
+                    ApplicationUserId = table.Column<Guid>(nullable: true),
+                    DescShort = table.Column<string>(maxLength: 140, nullable: false),
+                    DescLong = table.Column<string>(maxLength: 10000, nullable: false),
+                    NumToilets = table.Column<int>(nullable: false),
+                    NumRooms = table.Column<int>(nullable: false),
+                    PriceMonthly = table.Column<float>(nullable: false),
+                    Deposit = table.Column<float>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
+                    ContactNumber = table.Column<string>(nullable: false),
+                    ContactEmail = table.Column<string>(nullable: false),
+                    AddrLine1 = table.Column<string>(maxLength: 100, nullable: false),
+                    AddrLine2 = table.Column<string>(maxLength: 100, nullable: true),
+                    AddrCity = table.Column<string>(maxLength: 60, nullable: false),
+                    AddrCounty = table.Column<string>(maxLength: 30, nullable: true),
+                    AddrPostCode = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adverts", x => x.AdvertId);
+                    table.ForeignKey(
+                        name: "FK_Adverts_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,6 +190,34 @@ namespace HouseLemmingv3.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Requests",
+                columns: table => new
+                {
+                    RequestId = table.Column<Guid>(nullable: false),
+                    SubjectAdvertId = table.Column<Guid>(nullable: false),
+                    AdvertId = table.Column<Guid>(nullable: true),
+                    Feedback = table.Column<string>(maxLength: 140, nullable: true),
+                    Approval = table.Column<int>(nullable: false),
+                    DateCreation = table.Column<DateTime>(nullable: false),
+                    DateResponse = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requests", x => x.RequestId);
+                    table.ForeignKey(
+                        name: "FK_Requests_Adverts_AdvertId",
+                        column: x => x.AdvertId,
+                        principalTable: "Adverts",
+                        principalColumn: "AdvertId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Adverts_ApplicationUserId",
+                table: "Adverts",
+                column: "ApplicationUserId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -277,10 +287,10 @@ namespace HouseLemmingv3.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Adverts");
 
             migrationBuilder.DropTable(
-                name: "Adverts");
+                name: "AspNetUsers");
         }
     }
 }

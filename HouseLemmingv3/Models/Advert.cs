@@ -12,12 +12,12 @@ namespace HouseLemmingv3.Models
     public class Advert
     {
             [Key]
-            [Required] public int AdvertId { get; set; }
+            [Required] public Guid AdvertId { get; set; }
 
-            public List<Request> Requests { get; set; }
+            public ICollection<Request> Requests { get; set; }
 
-            [Required] public Guid OwnerId { get; set; }
-            
+            [Required] public Guid OwnerUserId { get; set; }
+            public ApplicationUser ApplicationUser { get; set; }
 
             [Required]
             [MaxLength(140)]

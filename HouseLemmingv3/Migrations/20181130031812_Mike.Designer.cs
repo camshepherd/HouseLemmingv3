@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HouseLemmingv3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181130014317_Barry")]
-    partial class Barry
+    [Migration("20181130031812_Mike")]
+    partial class Mike
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,9 +78,8 @@ namespace HouseLemmingv3.Migrations
 
             modelBuilder.Entity("HouseLemmingv3.Models.Advert", b =>
                 {
-                    b.Property<int>("AdvertId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("AdvertId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("AddrCity")
                         .IsRequired()
@@ -98,6 +97,8 @@ namespace HouseLemmingv3.Migrations
 
                     b.Property<string>("AddrPostCode")
                         .IsRequired();
+
+                    b.Property<Guid?>("ApplicationUserId");
 
                     b.Property<string>("ContactEmail")
                         .IsRequired();
@@ -121,7 +122,7 @@ namespace HouseLemmingv3.Migrations
 
                     b.Property<int>("NumToilets");
 
-                    b.Property<Guid>("OwnerId");
+                    b.Property<Guid>("OwnerUserId");
 
                     b.Property<float>("PriceMonthly");
 
@@ -131,14 +132,17 @@ namespace HouseLemmingv3.Migrations
 
                     b.HasKey("AdvertId");
 
+                    b.HasIndex("ApplicationUserId");
+
                     b.ToTable("Adverts");
                 });
 
             modelBuilder.Entity("HouseLemmingv3.Models.Request", b =>
                 {
-                    b.Property<int>("RequestId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("RequestId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("AdvertId");
 
                     b.Property<int>("Approval");
 
@@ -149,9 +153,11 @@ namespace HouseLemmingv3.Migrations
                     b.Property<string>("Feedback")
                         .HasMaxLength(140);
 
-                    b.Property<int>("SubjectId");
+                    b.Property<Guid>("SubjectAdvertId");
 
                     b.HasKey("RequestId");
+
+                    b.HasIndex("AdvertId");
 
                     b.ToTable("Requests");
                 });
@@ -261,6 +267,20 @@ namespace HouseLemmingv3.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("HouseLemmingv3.Models.Advert", b =>
+                {
+                    b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany("Adverts")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("HouseLemmingv3.Models.Request", b =>
+                {
+                    b.HasOne("HouseLemmingv3.Models.Advert", "Advert")
+                        .WithMany("Requests")
+                        .HasForeignKey("AdvertId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

@@ -19,7 +19,18 @@ namespace HouseLemmingv3.Data
         public DbSet<Advert> Adverts { get; set; }
         public DbSet<Request> Requests { get; set; }
 
+       /* protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(c => c.Adverts)
+                .WithOne(k => k.ApplicationUser);
 
-        
+            modelBuilder.Entity<Advert>()
+                .HasMany(u => u.Requests)
+                .WithOne(t => t.Advert);
+        }*/
+
+
+
     }
 }

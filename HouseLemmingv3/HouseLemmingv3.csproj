@@ -26,6 +26,14 @@
     <Compile Remove="Data\Migrations\20181130011618_New2.Designer.cs" />
     <Compile Remove="Data\Migrations\20181130011950_DoStuff.cs" />
     <Compile Remove="Data\Migrations\20181130011950_DoStuff.Designer.cs" />
+    <Compile Remove="Migrations\20181130012110_New2.cs" />
+    <Compile Remove="Migrations\20181130012110_New2.Designer.cs" />
+    <Compile Remove="Migrations\20181130014317_Barry.cs" />
+    <Compile Remove="Migrations\20181130014317_Barry.Designer.cs" />
+    <Compile Remove="Migrations\20181130014933_Coraline.cs" />
+    <Compile Remove="Migrations\20181130014933_Coraline.Designer.cs" />
+    <Compile Remove="Migrations\20181130015143_Harold.cs" />
+    <Compile Remove="Migrations\20181130015143_Harold.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +44,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Pages\Manage\" />
   </ItemGroup>
 
 </Project>
