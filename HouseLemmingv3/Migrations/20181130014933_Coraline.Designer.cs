@@ -4,14 +4,16 @@ using HouseLemmingv3.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HouseLemmingv3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181130014933_Coraline")]
+    partial class Coraline
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,8 +144,6 @@ namespace HouseLemmingv3.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdvertId");
-
                     b.Property<int>("Approval");
 
                     b.Property<DateTime>("DateCreation");
@@ -156,8 +156,6 @@ namespace HouseLemmingv3.Migrations
                     b.Property<int>("SubjectId");
 
                     b.HasKey("RequestId");
-
-                    b.HasIndex("AdvertId");
 
                     b.ToTable("Requests");
                 });
@@ -274,13 +272,6 @@ namespace HouseLemmingv3.Migrations
                     b.HasOne("HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data.ApplicationUser")
                         .WithMany("Adverts")
                         .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("HouseLemmingv3.Models.Request", b =>
-                {
-                    b.HasOne("HouseLemmingv3.Models.Advert")
-                        .WithMany("Requests")
-                        .HasForeignKey("AdvertId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

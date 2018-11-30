@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using HouseLemmingv3.Areas.Identity.Data.WebApp1.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace HouseLemmingv3.Models
@@ -13,9 +14,10 @@ namespace HouseLemmingv3.Models
             [Key]
             [Required] public int AdvertId { get; set; }
 
-            public virtual ICollection<Request> Requests { get; set; }
+            public List<Request> Requests { get; set; }
 
-            [Required] public string UserId { get; set; }
+            [Required] public Guid OwnerId { get; set; }
+            
 
             [Required]
             [MaxLength(140)]

@@ -136,13 +136,13 @@ namespace HouseLemmingv3.Models
                     }
                 }
 
-                /*
+                
                 if (!context.Adverts.Any())
                 {
                     context.Adverts.AddRange(
                         new Advert
                         {
-                            UserId = context.Users
+                            OwnerId = context.Users
                                 .SingleOrDefault(user => user.UserName == "liane@peppermintelephant.com").Id,
                             DescShort = "Small House Really Nice ",
                             DescLong =
@@ -164,7 +164,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Advert
                         {
-                            UserId = context.Users.SingleOrDefault(user => user.UserName == "stu@aol.com").Id,
+                            OwnerId = context.Users.SingleOrDefault(user => user.UserName == "stu@aol.com").Id,
                             DescShort = "Small House Really Nice,REALLY ",
                             DescLong =
                                 "Small House Really Nice, \n PLZ BUY!!, cockroaches everywhere, nobody wants to buy :( ",
@@ -185,7 +185,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Advert
                         {
-                            UserId = context.Users
+                            OwnerId = context.Users
                                 .SingleOrDefault(user => user.UserName == "broflovski_attorney@aol.com").Id,
                             DescShort = "averagehouse nothing unusual ",
                             DescLong = "its so normal even normal doesnt look normal",
@@ -206,7 +206,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Advert
                         {
-                            UserId = context.Users
+                            OwnerId = context.Users
                                 .SingleOrDefault(user => user.UserName == "broflovski_attorney@aol.com").Id,
                             DescShort = "Perfect House, cheap price ",
                             DescLong = "i want no money, so just live here, and give me your soul ",
@@ -227,7 +227,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Advert
                         {
-                            UserId = context.Users
+                            OwnerId = context.Users
                                 .SingleOrDefault(user => user.UserName == "liane@peppermintelephant.com").Id,
                             DescShort = "big Hous ",
                             DescLong =
@@ -249,7 +249,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Advert
                         {
-                            UserId = context.Users.SingleOrDefault(user => user.UserName == "randy@tegridy.com").Id,
+                            OwnerId = context.Users.SingleOrDefault(user => user.UserName == "randy@tegridy.com").Id,
                             DescShort = "bighouse, but tight",
                             DescLong =
                                 "its so big you coul dget lost in it!! rEally, come and see, you will like it so much you will never leave! ",
@@ -270,7 +270,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Advert
                         {
-                            UserId = context.Users
+                            OwnerId = context.Users
                                 .SingleOrDefault(user => user.UserName == "broflovski_attorney@aol.com").Id,
                             DescShort = "sue house",
                             DescLong =
@@ -300,7 +300,7 @@ namespace HouseLemmingv3.Models
                     context.Requests.AddRange(
                         new Request
                         {
-                            AdvertId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "1 Tegridy")
+                            SubjectId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "1 Tegridy")
                                 .AdvertId,
                             Approval = 0,
                             DateCreation = new DateTime(2018, 11, 13, 22, 04, 01),
@@ -309,7 +309,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Request
                         {
-                            AdvertId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "1 Tegridy")
+                            SubjectId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "1 Tegridy")
                                 .AdvertId,
                             Approval = 0,
                             DateCreation = new DateTime(2018, 11, 21, 23, 43, 01),
@@ -318,7 +318,7 @@ namespace HouseLemmingv3.Models
                         },
                         new Request
                         {
-                            AdvertId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "1 Tegridy")
+                            SubjectId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "1 Tegridy")
                                 .AdvertId,
                             Approval = 2,
                             DateCreation = new DateTime(2018, 11, 24, 02, 52, 08),
@@ -328,7 +328,7 @@ namespace HouseLemmingv3.Models
 
                         new Request
                         {
-                            AdvertId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "Nowhere")
+                            SubjectId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "Nowhere")
                                 .AdvertId,
                             Approval = 0,
                             DateCreation = new DateTime(2018, 11, 21, 14, 49, 02),
@@ -338,7 +338,7 @@ namespace HouseLemmingv3.Models
 
                         new Request
                         {
-                            AdvertId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "Nowhere")
+                            SubjectId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "Nowhere")
                                 .AdvertId,
                             Approval = 2,
                             DateCreation = new DateTime(2018, 11, 28, 09, 30, 28),
@@ -348,7 +348,7 @@ namespace HouseLemmingv3.Models
 
                         new Request
                         {
-                            AdvertId = context.Adverts
+                            SubjectId = context.Adverts
                                 .SingleOrDefault(thing => thing.AddrLine1 == "24 Normal Avenue").AdvertId,
                             Approval = 2,
                             DateCreation = new DateTime(2018, 11, 28, 15, 43, 26),
@@ -358,7 +358,7 @@ namespace HouseLemmingv3.Models
 
                         new Request
                         {
-                            AdvertId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "66 Route")
+                            SubjectId = context.Adverts.SingleOrDefault(thing => thing.AddrLine1 == "66 Route")
                                 .AdvertId,
                             Approval = 1,
                             DateCreation = new DateTime(2018, 11, 18, 16, 31, 47),
@@ -366,7 +366,7 @@ namespace HouseLemmingv3.Models
 
                         new Request
                         {
-                            AdvertId = context.Adverts
+                            SubjectId = context.Adverts
                                 .SingleOrDefault(thing => thing.AddrLine1 == "some body just told me").AdvertId,
                             Approval = 2,
                             DateCreation = new DateTime(2018, 11, 16, 20, 14, 52),
@@ -375,7 +375,7 @@ namespace HouseLemmingv3.Models
 
                         new Request
                         {
-                            AdvertId = context.Adverts
+                            SubjectId = context.Adverts
                                 .SingleOrDefault(thing => thing.AddrLine1 == "230 Burgess Road").AdvertId,
                             Approval = 2,
                             DateCreation = new DateTime(2018, 11, 15, 13, 19, 32),
@@ -384,7 +384,7 @@ namespace HouseLemmingv3.Models
                         }
                     );
                     context.SaveChanges();
-                }*/
+                }
 
             }
         }
