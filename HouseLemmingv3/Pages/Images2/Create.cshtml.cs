@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using HouseLemmingv3.Areas.Identity.Data;
 using HouseLemmingv3.Data;
+using HouseLemmingv3.Models;
 
-namespace HouseLemmingv3.Pages.Manage.Users
+namespace HouseLemmingv3.Pages.Images2
 {
     public class CreateModel : PageModel
     {
@@ -21,12 +21,12 @@ namespace HouseLemmingv3.Pages.Manage.Users
 
         public IActionResult OnGet()
         {
+        ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrCity");
             return Page();
         }
 
         [BindProperty]
-        public ApplicationUser ApplicationUser { get; set; }
-
+        public Image Image { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -35,7 +35,7 @@ namespace HouseLemmingv3.Pages.Manage.Users
                 return Page();
             }
 
-            _context.ApplicationUser.Add(ApplicationUser);
+            _context.Images.Add(Image);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

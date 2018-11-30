@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace HouseLemmingv3.Models
 {
@@ -14,6 +15,6 @@ namespace HouseLemmingv3.Models
         [Required] public Guid AdvertId { get; set; }
         public Advert Advert { get; set; }
 
-        public string FilePath { get; set; }
+        public byte[] ImageBytes { get; set; }
     }
 }
