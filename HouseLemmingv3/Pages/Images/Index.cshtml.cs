@@ -24,6 +24,7 @@ namespace HouseLemmingv3.Pages.Images
         [BindProperty]
         public FileUpload FileUpload { get; set; }
 
+        public Guid AdvertGuid { get; set; }
 
         [BindProperty]public Image Image { get; set; }
 
@@ -68,7 +69,7 @@ namespace HouseLemmingv3.Pages.Images
             {
                 ImageBytes = imageData,
                 FileName = FileUpload.Title,
-                AdvertId = Image.AdvertId
+                AdvertId = AdvertGuid
             };
 
             _context.Images.AddAsync(image).Wait();

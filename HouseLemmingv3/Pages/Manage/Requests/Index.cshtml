@@ -35,7 +35,7 @@
 @foreach (var item in Model.Request) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Advert.AddrCity)
+                <a asp-page="../Adverts/Details" asp-route-id="@item.AdvertId">@Html.DisplayFor(modelItem => item.Advert.AddrLine1)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Feedback)
