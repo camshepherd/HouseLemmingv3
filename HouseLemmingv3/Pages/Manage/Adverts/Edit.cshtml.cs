@@ -9,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
 
-namespace HouseLemmingv3.Pages.Manage.ADverts
+namespace HouseLemmingv3.Pages.Manage.Adverts
+
 {
     public class EditModel : PageModel
     {
@@ -26,28 +27,31 @@ namespace HouseLemmingv3.Pages.Manage.ADverts
         [BindProperty]
         public bool GoLive { get; set; }
 
-        private Request Request { get; set; }
+        [BindProperty]
+        public int InitialStatus { get; set; }
 
-        private bool MakeRequest = false;
+        public bool MakeRequest = false;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
+            MakeRequest = false;
             if (id == null)
             {
                 return NotFound();
             }
 
-            Advert = await _context.Adverts
-                .Include(a => a.ApplicationUser).FirstOrDefaultAsync(m => m.AdvertId == id);
-            if (Advert.Status == 1)
-            {
-                GoLive = true;
-            }
-            else
+            
+            Advert = await _context.Adverts.FirstOrDefaultAsync(m => m.AdvertId == id);
+            InitialStatus = Advert.Status;
+            if (Advert.Status == 0)
             {
                 GoLive = false;
             }
-            
+            else
+            {
+                GoLive = true;
+            }
+
             if (Advert == null)
             {
                 return NotFound();
@@ -57,46 +61,44 @@ namespace HouseLemmingv3.Pages.Manage.ADverts
 
         public async Task<IActionResult> OnPostAsync()
         {
+            
+            MakeRequest = false;
+            if (GoLive)
+            {
+                Advert.Status = 1;
+            }
+            else
+            {
+                Advert.Status = 0;
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            if (!GoLive)
+            if (Advert.Status == 1)
             {
-                Advert.Status = 0;
-            }
-            else
-            {
-                if (_context.Adverts.Find(Advert.AdvertId).Status == 1)
+                if (InitialStatus != 1)
                 {
-                    Advert.Status = 1;
-                }
-                else
-                {
-                    Advert.Status = 1;
-                    if (_context.Adverts.Find(Advert.AdvertId).Requests.Where(u => u.Approval == 1).Any())
-                    {
-                        _context.Requests.RemoveRange(_context.Adverts.Find(Advert.AdvertId).Requests
-                            .Where(u => u.Approval == 1));
-                    }
-
                     MakeRequest = true;
                 }
             }
 
-            
+            //Advert thing = _context.Adverts.Where(A => A.AdvertId == Advert.AdvertId);
+            //_context.Remove(_context.Adverts.Where(A => A.AdvertId == Advert.AdvertId).GetEnumerator().Current);
             _context.Attach(Advert).State = EntityState.Modified;
             //_context.Attach(Advert).State = EntityState.Unchanged;
 
             if (MakeRequest)
             {
-                Request = new Request();
-                Request.AdvertId = Advert.AdvertId;
-                Request.Approval = 1;
-                Request.DateCreation = DateTime.Now;
+                Request request = new Request()
+                {
+                    AdvertId = Advert.AdvertId,
+                    Approval = 1,
+                    DateCreation = DateTime.Now
+                };
 
-                _context.Requests.Add(Request);
+                _context.Requests.Add(request);
             }
 
 

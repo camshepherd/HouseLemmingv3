@@ -119,10 +119,22 @@ namespace HouseLemmingv3.Utilities
         [HttpGet]
         public FileStreamResult ViewImage(int Id)
         {
-            Image Image = _context.Images.FirstOrDefaultAsync(m => m.ImageId == Id).Result;
 
-            MemoryStream ms = new MemoryStream(Image.ImageBytes);
+            byte[] ByteArray = _context.Images.FirstOrDefaultAsync(m => m.ImageId == Id).Result.ImageBytes;
 
+            using (MemoryStream ms = new MemoryStream())
+            {
+                
+                using (FileStreamResult FileResult = new FileStreamResult(ms,"image/jpeg")
+                {
+                          
+                }
+                return new FileStreamResult(ms, "image/jpeg");
+            }
+
+            ms.Read((byte[]) ByteArray,0,ByteArray.Length);
+            //string thing = ms.ToString();
+            
             return new FileStreamResult(ms, "image/jpeg");
         }
         

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace HouseLemmingv3.Pages.Manage.Adverts
@@ -51,11 +52,11 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
             else
             {
                 Advert.Status = 1;
+                EntityEntry<Advert> advert = _context.Adverts.Add(Advert);
                 Request request = new Request();
-                request.AdvertId = Advert.AdvertId;
                 request.Approval = 1;
                 request.DateCreation = DateTime.Now;
-                _context.Adverts.Add(Advert);
+                request.AdvertId = advert.Entity.AdvertId;
                 _context.Requests.Add(request);
             }
 

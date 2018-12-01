@@ -1,5 +1,5 @@
 ﻿@page
-@model HouseLemmingv3.Pages.Manage.CreateModel
+@model HouseLemmingv3.Pages.Manage.Adverts.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -100,7 +100,7 @@
                 <span asp-validation-for="Advert.AddrPostCode" class="text-danger"></span>
             </div>
             Go Live?
-            <input type="checkbox" asp-for="@Model.GoLive" value="@Model.GoLive"/>
+            <input type="checkbox" asp-for="@Model.GoLive"/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

@@ -28,6 +28,8 @@
     <Compile Remove="Migrations\20181130180035_Wybie.Designer.cs" />
     <Compile Remove="Migrations\20181130180250_Wybie.cs" />
     <Compile Remove="Migrations\20181130180250_Wybie.Designer.cs" />
+    <Compile Remove="Migrations\20181130213646_123.cs" />
+    <Compile Remove="Migrations\20181130213646_123.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
