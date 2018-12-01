@@ -11,7 +11,7 @@ using HouseLemmingv3.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace HouseLemmingv3.Pages.Manage
+namespace HouseLemmingv3.Pages.Manage.Adverts
 {
     public class CreateModel : PageModel
     {

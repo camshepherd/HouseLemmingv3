@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
 
-namespace HouseLemmingv3.Pages.Manage
+namespace HouseLemmingv3.Pages.Manage.ADverts
 {
     public class DetailsModel : PageModel
     {
