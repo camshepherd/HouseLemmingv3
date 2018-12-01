@@ -25,21 +25,15 @@
                 <span asp-validation-for="Request.Approval" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Request.DateCreation" class="control-label"></label>
-                <input asp-for="Request.DateCreation" class="form-control"/>
-                <span asp-validation-for="Request.DateCreation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Request.DateResponse" class="control-label"></label>
-                <input asp-for="Request.DateResponse" class="form-control"/>
-                <span asp-validation-for="Request.DateResponse" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default"/>
             </div>
         </form>
     </div>
 </div>
+
+<td>
+    Subject Advert: <a asp-page="../Adverts/Details" asp-route-id="@ViewData["AdvertId"]">@(ViewData["AdvertName"])</a>
+</td>
 
 <div>
     <a asp-page="./Index">Back to List</a>

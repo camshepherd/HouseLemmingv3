@@ -23,8 +23,8 @@ namespace HouseLemmingv3.Pages.Manage.Requests
         [BindProperty]
         public Request Request { get; set; }
 
-        public Guid advertId;
-
+        public Guid AdvertId;
+        public string AdvertName;
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
@@ -34,12 +34,14 @@ namespace HouseLemmingv3.Pages.Manage.Requests
 
             Request = await _context.Requests
                 .Include(r => r.Advert).FirstOrDefaultAsync(m => m.RequestId == id);
-
+            ViewData["AdvertId"] = Request.AdvertId;
+            ViewData["AdvertName"] = Request.Advert.AddrLine1;
+            AdvertName = Request.Advert.AddrLine1;
             if (Request == null)
             {
                 return NotFound();
             }
-           ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrCity");
+            //ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrCity");
             return Page();
         }
 
