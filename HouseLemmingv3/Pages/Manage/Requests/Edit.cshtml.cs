@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HouseLemmingv3.Pages.Manage.Requests
 {
@@ -19,6 +20,7 @@ namespace HouseLemmingv3.Pages.Manage.Requests
         {
             _context = context;
         }
+
 
         [BindProperty]
         public Request Request { get; set; }
@@ -52,8 +54,10 @@ namespace HouseLemmingv3.Pages.Manage.Requests
                 return Page();
             }
 
+
+            Request.DateResponse = DateTime.Now;
+            //_context.Attach(Request).State = EntityState.Unchanged;
             _context.Attach(Request).State = EntityState.Modified;
-            _context.Attach(Request).State = EntityState.Unchanged;
 
             try
             {

@@ -45,17 +45,47 @@
                 <a asp-page="../Adverts/Details" asp-route-id="@item.AdvertId">@Html.DisplayFor(modelItem => item.Advert.AddrLine1)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Feedback)
+                @if (item.DateCreation <= item.DateResponse)
+                {
+                    @Html.DisplayFor(modelItem => item.Feedback)
+                }
+                @if (item.DateCreation > item.DateResponse)
+                {
+                    @:n/a
+                }
+
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Approval)
+                @if (item.Approval == 0)
+                {
+                    @:Declined
+                }
+                @if (item.Approval == 1)
+                {
+                    @:Unaddressed
+                }
+                @if (item.Approval == 2)
+                {
+                    @:Approved
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreation)
             </td>
+            
             <td>
+            @if (item.DateCreation <= item.DateResponse)
+            {
                 @Html.DisplayFor(modelItem => item.DateResponse)
+            }
+            @if (item.DateCreation > item.DateResponse)
+            {
+                @:n/a
+            }
             </td>
+            
+
+            
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.RequestId">Respond</a> |
                 <a asp-page="./Details" asp-route-id="@item.RequestId">Details</a> |
