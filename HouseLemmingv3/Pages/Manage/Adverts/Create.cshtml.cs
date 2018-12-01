@@ -27,6 +27,9 @@ namespace HouseLemmingv3.Pages.Manage
 
         [BindProperty]
         public Advert Advert { get; set; }
+        
+        [BindProperty]
+        public bool GoLive { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -35,7 +38,23 @@ namespace HouseLemmingv3.Pages.Manage
                 return Page();
             }
 
-            _context.Adverts.Add(Advert);
+            if (!GoLive)
+            {
+                Advert.Status = 0;
+                _context.Adverts.Add(Advert);
+            }
+            else
+            {
+                Advert.Status = 1;
+                Request request = new Request();
+                request.AdvertId = Advert.AdvertId;
+                request.Approval = 1;
+                request.DateCreation = DateTime.Now;
+                _context.Adverts.Add(Advert);
+                _context.Requests.Add(request);
+            }
+
+            
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
