@@ -20,18 +20,17 @@ namespace HouseLemmingv3.Pages.Manage
         public IndexModel(HouseLemmingv3.Data.ApplicationDbContext context)
         {
             _context = context;
-            UserManager = _context.GetService<UserManager<ApplicationUser>>();
+            _UserManager = _context.GetService<UserManager<ApplicationUser>>();
         }
 
-        private UserManager<ApplicationUser> UserManager;
-        private RoleManager<IdentityRole> RoleManager;
+        private readonly UserManager<ApplicationUser> _UserManager;
         public IList<Advert> Advert { get;set; }
         
 
         public async Task OnGetAsync()
         {
-            Guid UserId = UserManager.GetUserAsync(HttpContext.User).Result.Id;
-            IList<string> Role = UserManager.GetRolesAsync(UserManager.GetUserAsync(HttpContext.User).Result).Result;
+            Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
+            IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
             if (Role.Contains("Landlord"))
             {
                 Advert = await _context.Adverts
