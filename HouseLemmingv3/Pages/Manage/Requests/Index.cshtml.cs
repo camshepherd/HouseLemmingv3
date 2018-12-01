@@ -28,7 +28,7 @@ namespace HouseLemmingv3.Pages.Manage.Requests
 
         public async Task OnGetAsync(string searchString)
         {
-            var requests = from m in _context.Requests.Include(r => r.Advert)
+            var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser)
                 select m;
 
             if (!String.IsNullOrEmpty(searchString) && searchString.All(Char.IsDigit))

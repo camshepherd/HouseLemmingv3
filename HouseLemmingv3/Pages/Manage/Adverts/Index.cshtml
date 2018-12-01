@@ -18,7 +18,7 @@
         <div class="meta">
             <div class="photo" style="background-image: url('../images/house1.jpg')"></div>
             <ul class="details">
-                <li class="author">John Doe</li>
+                <li class="author">@Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</li>
                 <li class="date">@Html.DisplayFor(modelItem => item.StartDate) - @Html.DisplayFor(modelItem => item.EndDate)</li>
                 <!--<li class="tags">
                     <ul>
