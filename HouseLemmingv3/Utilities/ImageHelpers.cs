@@ -1,19 +1,30 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using HouseLemmingv3.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HouseLemmingv3.Utilities
 {
     public class ImageHelpers
     {
+        private ApplicationDbContext _context;
+        public ImageHelpers(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public static async Task<byte[]> ProcessFormFile(IFormFile imageFile,
             ModelStateDictionary modelState)
         {
@@ -104,5 +115,16 @@ namespace HouseLemmingv3.Utilities
 
             return null;
         }
+
+        [HttpGet]
+        public FileStreamResult ViewImage(int Id)
+        {
+            Image Image = _context.Images.FirstOrDefaultAsync(m => m.ImageId == Id).Result;
+
+            MemoryStream ms = new MemoryStream(Image.ImageBytes);
+
+            return new FileStreamResult(ms, "image/jpeg");
+        }
+        
     }
 }

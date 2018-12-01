@@ -1,4 +1,5 @@
 ﻿@page
+@using Utilities
 @model HouseLemmingv3.Pages.Images.IndexModel
 
 @{
@@ -51,6 +52,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                    <img src="@Model.ImageHelpers.ViewImage(item.ImageId)"/> 
                 </td>
             </tr>
         }

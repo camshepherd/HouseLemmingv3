@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using HouseLemmingv3.Areas.Identity.Data;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +10,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Models;
 using HouseLemmingv3.Utilities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace HouseLemmingv3.Pages.Images
 {
@@ -19,7 +23,11 @@ namespace HouseLemmingv3.Pages.Images
         public IndexModel(HouseLemmingv3.Data.ApplicationDbContext context)
         {
             _context = context;
+            ImageHelpers = new ImageHelpers(context);
+            UserManager = _context.GetService<UserManager<ApplicationUser>>();
         }
+        private UserManager<ApplicationUser> UserManager;
+        public ImageHelpers ImageHelpers;
 
         [BindProperty]
         public FileUpload FileUpload { get; set; }
@@ -34,7 +42,7 @@ namespace HouseLemmingv3.Pages.Images
 
         public async Task OnGetAsync()
         {
-            ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrLine1");
+            ViewData["AdvertId"] = new SelectList(_context.Adverts.Where(u=>u.ApplicationUserId == UserManager.GetUserAsync(HttpContext.User).Result.Id), "AdvertId", "AddrLine1");
             Images = await _context.Images.AsNoTracking().ToListAsync();
         }
         /*
