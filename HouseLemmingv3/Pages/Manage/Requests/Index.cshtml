@@ -17,6 +17,7 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<!--
 <table class="table">
     <thead>
         <tr>
@@ -52,7 +53,7 @@
                     }
                     @if (item.DateCreation > item.DateResponse)
                     {
-                        @:n/a
+                       
                     }
                 </td>
                 <td>
@@ -80,7 +81,7 @@
                     }
                     @if (item.DateCreation > item.DateResponse)
                     {
-                        @:n/a
+                        
                     }
                 </td>
 
@@ -94,7 +95,7 @@
         }
     </tbody>
 </table>
-
+-->
 @foreach (var item in Model.Requests)
 {
     <div class="blog-card">
@@ -110,7 +111,7 @@
                     }
                     @if (item.DateCreation > item.DateResponse)
                     {
-                        @:n/a
+                        
                     }
                 </li>
                 <!--<li class="tags">
@@ -127,7 +128,7 @@
             <h1>
                 @if (item.Approval == 0)
                 {
-                    @:Declined
+                    @:<font color="red">Unaddressed</font>
                 }
                 @if (item.Approval == 1)
                 {
@@ -135,7 +136,7 @@
                 }
                 @if (item.Approval == 2)
                 {
-                    @:Approved
+                    @:<font color="green">Approved</font>
                 }
             </h1>
             <h2><a asp-page="../Adverts/Details" asp-route-id="@item.AdvertId">@Html.DisplayFor(modelItem => item.Advert.AddrLine1)</a></h2>
@@ -146,7 +147,7 @@
                 }
                 @if (item.DateCreation > item.DateResponse)
                 {
-                    @:n/a
+                    
                 }
             </p>
             <p class="read-more">

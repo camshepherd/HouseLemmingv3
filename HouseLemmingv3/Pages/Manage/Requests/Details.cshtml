@@ -27,7 +27,18 @@
             @Html.DisplayNameFor(model => model.Request.Approval)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Request.Approval)
+            @if (Model.Request.Approval == 0)
+            {
+                @:<font color="red">Unaddressed</font>
+            }
+            @if (Model.Request.Approval == 1)
+            {
+                @:Unaddressed
+            }
+            @if (Model.Request.Approval == 2)
+            {
+                @:<font color="green">Approved</font>
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Request.DateCreation)
@@ -39,7 +50,14 @@
             @Html.DisplayNameFor(model => model.Request.DateResponse)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Request.DateResponse)
+            @if (Model.Request.DateResponse <= Model.Request.DateCreation)
+            {
+                @:n/a
+            }
+            else
+            {
+                @Html.DisplayFor(model => Model.Request.DateCreation)
+            }
         </dd>
     </dl>
 </div>
