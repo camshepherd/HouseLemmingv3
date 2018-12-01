@@ -21,7 +21,6 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             _context = context;
         }
 
-
         [BindProperty]
         public Request Request { get; set; }
 

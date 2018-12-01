@@ -21,6 +21,7 @@ namespace HouseLemmingv3.Pages.Manage
 
         public Advert Advert { get; set; }
 
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)

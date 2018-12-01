@@ -1,4 +1,5 @@
 ﻿@page
+@using Models
 @model HouseLemmingv3.Pages.Manage.DetailsModel
 
 @{
@@ -12,10 +13,10 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Advert.ApplicationUser)
+            @Html.DisplayNameFor(model => model.Advert.ApplicationUser.UserName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Advert.ApplicationUser.Id)
+            @Html.DisplayFor(model => model.Advert.ApplicationUser.UserName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Advert.DescShort)
@@ -69,7 +70,14 @@
             @Html.DisplayNameFor(model => model.Advert.Status)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Advert.Status)
+            @if (Model.Advert.Status == 0)
+            {
+                @:Not Active
+            }
+            @if (Model.Advert.Status == 1)
+            {
+                @Html.DisplayFor(model => model.Advert.Status)
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Advert.ContactNumber)

@@ -35,6 +35,9 @@ namespace HouseLemmingv3.Pages.Manage.Requests
                 return Page();
             }
 
+            Request.Approval = 1;
+            Request.DateCreation = DateTime.Now;
+            
             _context.Requests.Add(Request);
             await _context.SaveChangesAsync();
 
