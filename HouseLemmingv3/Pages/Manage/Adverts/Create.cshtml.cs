@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HouseLemmingv3.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace HouseLemmingv3.Pages.Manage
 {
     public class CreateModel : PageModel
     {
         private readonly HouseLemmingv3.Data.ApplicationDbContext _context;
-
+        private UserManager<ApplicationUser> UserManager;
         public CreateModel(HouseLemmingv3.Data.ApplicationDbContext context)
         {
             _context = context;
+            UserManager = context.GetService<UserManager<ApplicationUser>>();
         }
 
         public IActionResult OnGet()
@@ -38,6 +42,7 @@ namespace HouseLemmingv3.Pages.Manage
                 return Page();
             }
 
+            Advert.ApplicationUserId = UserManager.GetUserAsync(HttpContext.User).Result.Id;
             if (!GoLive)
             {
                 Advert.Status = 0;

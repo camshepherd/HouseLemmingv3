@@ -23,7 +23,12 @@ namespace HouseLemmingv3.Pages.Manage
         [BindProperty]
         public Advert Advert { get; set; }
 
-        public Guid applicationUserId { get; set; }
+        [BindProperty]
+        public bool GoLive { get; set; }
+
+        private Request Request { get; set; }
+
+        private bool MakeRequest = false;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -34,13 +39,19 @@ namespace HouseLemmingv3.Pages.Manage
 
             Advert = await _context.Adverts
                 .Include(a => a.ApplicationUser).FirstOrDefaultAsync(m => m.AdvertId == id);
-            applicationUserId = Advert.ApplicationUserId;
-
+            if (Advert.Status == 1)
+            {
+                GoLive = true;
+            }
+            else
+            {
+                GoLive = false;
+            }
+            
             if (Advert == null)
             {
                 return NotFound();
             }
-           ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
@@ -51,9 +62,44 @@ namespace HouseLemmingv3.Pages.Manage
                 return Page();
             }
 
-            _context.Attach(Advert).State = EntityState.Modified;
-            _context.Attach(Advert).State = EntityState.Unchanged;
+            if (!GoLive)
+            {
+                Advert.Status = 0;
+            }
+            else
+            {
+                if (_context.Adverts.Find(Advert.AdvertId).Status == 1)
+                {
+                    Advert.Status = 1;
+                }
+                else
+                {
+                    Advert.Status = 1;
+                    if (_context.Adverts.Find(Advert.AdvertId).Requests.Where(u => u.Approval == 1).Any())
+                    {
+                        _context.Requests.RemoveRange(_context.Adverts.Find(Advert.AdvertId).Requests
+                            .Where(u => u.Approval == 1));
+                    }
+
+                    MakeRequest = true;
+                }
+            }
+
             
+            _context.Attach(Advert).State = EntityState.Modified;
+            //_context.Attach(Advert).State = EntityState.Unchanged;
+
+            if (MakeRequest)
+            {
+                Request = new Request();
+                Request.AdvertId = Advert.AdvertId;
+                Request.Approval = 1;
+                Request.DateCreation = DateTime.Now;
+
+                _context.Requests.Add(Request);
+            }
+
+
             try
             {
                 await _context.SaveChangesAsync();

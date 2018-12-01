@@ -72,11 +72,11 @@
         <dd>
             @if (Model.Advert.Status == 0)
             {
-                @:Not Active
+                @:<font color="red">Not Live</font>
             }
             @if (Model.Advert.Status == 1)
             {
-                @Html.DisplayFor(model => model.Advert.Status)
+                @:<font color="green">Live</font>
             }
         </dd>
         <dt>
