@@ -143,3 +143,15 @@ body {
           transform: skew(3deg); }
         .blog-card.alt .details {
           padding-left: 25px; } }
+
+.green {
+  background: #5ad67d; }
+
+.orange {
+  background: #d6a05a; }
+
+.grey {
+  background: #a2a2a2; }
+
+.red {
+  background: #d6625a; }

@@ -39,22 +39,26 @@
                 </li>-->
             </ul>
         </div>
-        @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).First().Approval == 2)
-        {
-            @:Brand = green
-        }
-        @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).First().Approval == 1)
-        {
-            @:Brand = orange
-        }
-        @if (item.Status == 0 || item.Requests.OrderByDescending(y => y.DateCreation).First().Approval == 0)
-        {
-            @:Brand = red
-        }
+
         <div class="description">
             <h1>@Html.DisplayFor(modelItem => item.PriceMonthly)</h1>
             <h2>@Html.DisplayFor(modelItem => item.AddrLine1)</h2>
-            <p> @Html.DisplayFor(modelItem => item.DescShort)</p>
+            @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 2)
+            {
+                <p class="green"> @Html.DisplayFor(modelItem => item.DescShort)</p>
+            }
+            @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 1)
+            {
+                <p class="orange"> @Html.DisplayFor(modelItem => item.DescShort)</p>
+            }
+            @if (item.Status == 0 || (!item.Requests.Any()))
+            {
+                <p class="grey"> @Html.DisplayFor(modelItem => item.DescShort)</p>
+            }
+            @if (item.Requests.Any() && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 0)
+            {
+                <p class="red"> @Html.DisplayFor(modelItem => item.DescShort)</p>
+            }
             <p class="read-more">
                 @if (Model.ShowEdit)
                 {
