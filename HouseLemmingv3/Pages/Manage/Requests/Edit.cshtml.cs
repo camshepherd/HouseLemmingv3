@@ -24,8 +24,12 @@ namespace HouseLemmingv3.Pages.Manage.Requests
         [BindProperty]
         public Request Request { get; set; }
 
+        [BindProperty]
+        public bool Approved { get; set; }
+
         public Guid AdvertId;
         public string AdvertName;
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
@@ -42,6 +46,18 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             {
                 return NotFound();
             }
+
+            if (Request.Approval == 2)
+            {
+                Approved = true;
+            }
+            else
+            {
+                Approved = false;
+            }
+
+
+
             //ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrCity");
             return Page();
         }
@@ -51,6 +67,14 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             if (!ModelState.IsValid)
             {
                 return Page();
+            }
+            if (Approved)
+            {
+                Request.Approval = 2;
+            }
+            else
+            {
+                Request.Approval = 0;
             }
 
 

@@ -54,12 +54,12 @@
                 <span asp-validation-for="Advert.StartDate" class="text-danger"></span>
             </div>
             <!--
-    <div class="form-group">
-        <label asp-for="Advert.Status" class="control-label"></label>
-        <input asp-for="Advert.Status" class="form-control" />
-        <span asp-validation-for="Advert.Status" class="text-danger"></span>
-    </div>
-    -->
+            <div class="form-group">
+                <label asp-for="Advert.Status" class="control-label"></label>
+                <input asp-for="Advert.Status" class="form-control" />
+                <span asp-validation-for="Advert.Status" class="text-danger"></span>
+            </div>
+            -->
             <div class="form-group">
                 <label asp-for="Advert.EndDate" class="control-label"></label>
                 <input asp-for="Advert.EndDate" class="form-control" />
@@ -100,14 +100,16 @@
                 <input asp-for="Advert.AddrPostCode" class="form-control" />
                 <span asp-validation-for="Advert.AddrPostCode" class="text-danger"></span>
             </div>
-            Go Live?
-            <input type="checkbox" asp-for="@Model.GoLive" />
+            <div class="form-group">
+                <label class="control-label"> Go Live? </label>
+                <input type="checkbox" asp-for="@Model.GoLive" />
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
-            
-    </div>
+
+</div>
 </div>
 
 <div>

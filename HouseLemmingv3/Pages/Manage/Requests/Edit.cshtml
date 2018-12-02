@@ -23,9 +23,11 @@
                 <span asp-validation-for="Request.Feedback" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Request.Approval" class="control-label"></label>
+                <!--<label asp-for="Request.Approval" class="control-label"></label>
                 <input asp-for="Request.Approval" class="form-control" />
-                <span asp-validation-for="Request.Approval" class="text-danger"></span>
+                <span asp-validation-for="Request.Approval" class="text-danger"></span>-->
+                <label class="control-label">Approved?</label> 
+                <input type="checkbox" asp-for="@Model.Approved" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

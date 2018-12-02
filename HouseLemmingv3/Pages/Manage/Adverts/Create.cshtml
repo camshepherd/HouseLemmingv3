@@ -100,8 +100,10 @@
                 <input asp-for="Advert.AddrPostCode" class="form-control" />
                 <span asp-validation-for="Advert.AddrPostCode" class="text-danger"></span>
             </div>
-            Go Live?
-            <input type="checkbox" asp-for="@Model.GoLive"/>
+            <div class="form-group"
+                <label class="control-label">Go Live?</label>                 
+                <input type="checkbox" asp-for="@Model.GoLive" />
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
