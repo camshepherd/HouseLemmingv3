@@ -7,9 +7,10 @@
 
 <h2>Index</h2>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+@if (Model.ShowCreate)
+{
+    @:<p><a asp-page="Create">Create New</a></p>
+}
 
 @foreach (var item in Model.Advert)
 {

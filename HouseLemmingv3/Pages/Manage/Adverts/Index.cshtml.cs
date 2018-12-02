@@ -25,7 +25,8 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
 
         private readonly UserManager<ApplicationUser> _UserManager;
         public IList<Advert> Advert { get;set; }
-        
+        [BindProperty]
+        public bool ShowCreate { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -33,11 +34,13 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
             IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
             if (Role.Contains("Landlord"))
             {
+                ShowCreate = true;
                 Advert = await _context.Adverts
                     .Include(a => a.ApplicationUser).Where(u => u.ApplicationUserId == UserId).ToListAsync();
             }
             else
             {
+                ShowCreate = false;
                 Advert = await _context.Adverts.Include(a => a.ApplicationUser).ToListAsync();
             }
         }
