@@ -51,11 +51,11 @@
             {
                 <p class="orange"> @Html.DisplayFor(modelItem => item.DescShort)</p>
             }
-            @if (item.Status == 0 || (!item.Requests.Any()))
+            @if (item.Status == 0 )
             {
                 <p class="grey"> @Html.DisplayFor(modelItem => item.DescShort)</p>
             }
-            @if (item.Requests.Any() && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 0)
+            @if (item.Requests.Any() && item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 0)
             {
                 <p class="red"> @Html.DisplayFor(modelItem => item.DescShort)</p>
             }
