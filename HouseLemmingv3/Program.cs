@@ -29,12 +29,9 @@ namespace HouseLemmingv3
                 try
                 {
                     DBInitialiser.InitialiseAsync(context, services).Wait();
-                    //DBInitialiser.Initialise(services);
-                    Console.WriteLine("NOOT FAAILED");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("FAAILED");
                     Console.WriteLine(ex);
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occured while seeding the database");
