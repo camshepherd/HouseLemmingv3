@@ -9,12 +9,14 @@ using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
 using HouseLemmingv3.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace HouseLemmingv3.Pages.Manage.Adverts
 
 {
+    [AllowAnonymous]
     public class DetailsModel : PageModel
     {
         private readonly HouseLemmingv3.Data.ApplicationDbContext _context;
