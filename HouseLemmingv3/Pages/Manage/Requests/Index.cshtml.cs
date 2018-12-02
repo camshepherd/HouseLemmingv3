@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
+using HouseLemmingv3.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -23,6 +24,8 @@ namespace HouseLemmingv3.Pages.Manage.Requests
         public SelectList Status { get; set; }
         private UserManager<ApplicationUser> _UserManager { get; set; }
 
+        public ImageHelpers ImageHelpers;
+
         public bool ShowEdit { get; set; }
 
         public IndexModel(HouseLemmingv3.Data.ApplicationDbContext context)
@@ -35,14 +38,15 @@ namespace HouseLemmingv3.Pages.Manage.Requests
 
         public async Task OnGetAsync(string searchString)
         {
+            ImageHelpers = new ImageHelpers(_context);
             Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
             IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
-            var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser)
+            var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser).Include(b => b.Advert.Images)
                 select m;
             if (Role.Contains("Landlord"))
             {
-                requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser).Where(u => u.Advert.ApplicationUserId == UserId)
-                    select m;
+                requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser).Where(u => u.Advert.ApplicationUserId == UserId).Include(b => b.Advert.Images)
+                           select m;
                 ShowEdit = true;
             }
             else 

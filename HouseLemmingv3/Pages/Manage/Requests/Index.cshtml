@@ -1,4 +1,5 @@
 ﻿@page
+@using Models
 @model HouseLemmingv3.Pages.Manage.Requests.IndexModel
 
 @{
@@ -97,12 +98,20 @@
 {
     <div class="blog-card">
         <div class="meta">
-            <div class="photo" style="background-image: url('../images/house1.jpg')"></div>
+            @if (item.Advert.Images.Any())
+            {
+                <div class="photo" style="background-image: url('@Model.ImageHelpers.ViewImage(item.Advert.Images[0].ImageId)')"></div>
+            }
+            else
+            {
+                <div class="photo" style="background-image: url('../images/house1.jpg')"></div>
+            }
             <ul class="details">
                 <li class="author">@Html.DisplayFor(modelItem => item.Advert.ApplicationUser.UserName)</li>
                 <li class="date">Request Created: @Html.DisplayFor(modelItem => item.DateCreation)</li>
                 <li class="date">
-                    Request Responded: @if (item.DateCreation <= item.DateResponse)
+                    Request Responded:
+                    @if (item.DateCreation <= item.DateResponse)
                     {
                         @Html.DisplayFor(modelItem => item.DateResponse)
                     }
