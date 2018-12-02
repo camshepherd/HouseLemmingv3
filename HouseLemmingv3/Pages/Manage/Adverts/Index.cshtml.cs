@@ -44,13 +44,14 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
                 ShowCreate = true;
                 ShowEdit = true;
                 Advert = await _context.Adverts
-                    .Include(a => a.ApplicationUser).Include(e => e.Images).Where(u => u.ApplicationUserId == UserId).ToListAsync();
+                    .Include(a => a.ApplicationUser).Include(z => z.Requests).Include(e => e.Images).Where(u => u.ApplicationUserId == UserId).ToListAsync();
             }
             else
             {
                 ShowEdit = false;
                 ShowCreate = false;
-                Advert = await _context.Adverts.Include(a => a.ApplicationUser).Include(e => e.Images).ToListAsync();
+                Advert = await _context.Adverts.Include(a => a.ApplicationUser).Include(u => u.Requests).Where(q => q.Status == 1)
+                    .Where(c => c.Requests.OrderByDescending(t => t.DateCreation).FirstOrDefault().Approval == 2).Include(x => x.Images).ToListAsync();
             }
         }
     }

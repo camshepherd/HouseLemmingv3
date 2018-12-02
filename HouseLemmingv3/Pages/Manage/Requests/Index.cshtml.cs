@@ -41,17 +41,20 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             ImageHelpers = new ImageHelpers(_context);
             Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
             IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
-            var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser).Include(b => b.Advert.Images)
+            var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser)
+                .Include(b => b.Advert.Images).GroupBy(n => n.Advert).Select(r => r.OrderByDescending(z => z.DateCreation).First())
                 select m;
             if (Role.Contains("Landlord"))
             {
-                requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser).Where(u => u.Advert.ApplicationUserId == UserId).Include(b => b.Advert.Images)
+                requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser)
+                        .Where(u => u.Advert.ApplicationUserId == UserId).Include(b => b.Advert.Images)
+                        .GroupBy(z => z.Advert).Select(w => w.OrderByDescending(q => q.DateCreation).First())
                            select m;
-                ShowEdit = true;
+                ShowEdit = false;
             }
             else 
             {
-                ShowEdit = false;
+                ShowEdit = true;
             }
             if (!String.IsNullOrEmpty(searchString) && searchString.All(Char.IsDigit))
             {

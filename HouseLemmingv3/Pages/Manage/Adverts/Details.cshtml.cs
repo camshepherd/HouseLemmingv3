@@ -25,9 +25,11 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
             _UserManager = _context.GetService<UserManager<ApplicationUser>>();
         }
 
-        private readonly UserManager<ApplicationUser> _UserManager;
+        public UserManager<ApplicationUser> _UserManager;
         public Advert Advert { get; set; }
         public bool ShowEdit { get; set; }
+        public bool ShowStates { get; set; }
+
 
         [BindProperty]
         public ImageHelpers ImageHelpers { get; set; }
@@ -45,14 +47,16 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
             if (Role.Contains("Landlord") || Role.Contains("Admin"))
             {
                 ShowEdit = true;
+                ShowStates = true;
             }
             else
             {
+                ShowStates = false;
                 ShowEdit = false;
             }
 
             Advert = await _context.Adverts
-                .Include(a => a.ApplicationUser).Include(t => t.Images).FirstOrDefaultAsync(m => m.AdvertId == id);
+                .Include(a => a.ApplicationUser).Include(t => t.Images).Include(c => c.Requests).FirstOrDefaultAsync(m => m.AdvertId == id);
                 
             if (Advert == null)
             {
