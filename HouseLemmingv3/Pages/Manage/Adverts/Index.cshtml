@@ -51,7 +51,7 @@
             {
                 <p class="orange"> @Html.DisplayFor(modelItem => item.DescShort)</p>
             }
-            @if (item.Status == 0 )
+            @if (item.Status == 0)
             {
                 <p class="grey"> @Html.DisplayFor(modelItem => item.DescShort)</p>
             }
@@ -59,15 +59,49 @@
             {
                 <p class="red"> @Html.DisplayFor(modelItem => item.DescShort)</p>
             }
-            <p class="read-more">
-                @if (Model.ShowEdit)
-                {
-                    <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> @:|
-                }
 
 
-                <a asp-page="./Details" asp-route-id="@item.AdvertId">Read More</a>
-            </p>
+
+            @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 2)
+            {
+                <p class="read-more green">
+                    @if (Model.ShowEdit)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> @:|
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.AdvertId">Read More</a>
+                </p>
+            }
+            @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 1)
+            {
+                <p class="read-more orange">
+                    @if (Model.ShowEdit)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> @:|
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.AdvertId">Read More</a>
+                </p>
+            }
+            @if (item.Status == 0)
+            {
+                <p class="read-more grey">
+                    @if (Model.ShowEdit)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> @:|
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.AdvertId">Read More</a>
+                </p>
+            }
+            @if (item.Requests.Any() && item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).FirstOrDefault().Approval == 0)
+            {
+                <p class="read-more red">
+                    @if (Model.ShowEdit)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> @:|
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.AdvertId">Read More</a>
+                </p>
+            }
         </div>
     </div>
 }
