@@ -1,0 +1,40 @@
+﻿@page
+@model HouseLemmingv3.Pages.Manage.Images2.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Image</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image.FileName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image.FileName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image.Advert)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image.Advert.AddrCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image.ImageBytes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image.ImageBytes)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Image.ImageId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
