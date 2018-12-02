@@ -42,16 +42,30 @@ namespace HouseLemmingv3.Pages.Images
 
         public async Task OnGetAsync()
         {
-            ViewData["AdvertId"] = new SelectList(_context.Adverts.Where(u=>u.ApplicationUserId == UserManager.GetUserAsync(HttpContext.User).Result.Id), "AdvertId", "AddrLine1");
-            Images = await _context.Images.Include(e => e.Advert).ToListAsync();
+            IList<string> Role = UserManager.GetRolesAsync(UserManager.GetUserAsync(HttpContext.User).Result).Result;
+            if (Role.Contains("Admin"))
+            {
+                ViewData["AdvertId"] =
+                    new SelectList(
+                        _context.Adverts,
+                        "AdvertId",
+                        "AddrLine1");
+                Images = await _context.Images
+                    .Include(e => e.Advert).ToListAsync();
+            }
+            else if (Role.Contains("Landlord"))
+            {
+                ViewData["AdvertId"] =
+                    new SelectList(
+                        _context.Adverts.Where(u =>
+                            u.ApplicationUserId == UserManager.GetUserAsync(HttpContext.User).Result.Id), "AdvertId",
+                        "AddrLine1");
+                Images = await _context.Images
+                    .Where(k => k.Advert.ApplicationUserId == UserManager.GetUserAsync(HttpContext.User).Result.Id)
+                    .Include(e => e.Advert).ToListAsync();
+            }
         }
-        /*
-        public IActionResult OnGet()
-        {
-            ViewData["AdvertId"] = new SelectList(_context.Adverts, "AdvertId", "AddrLine1");
-            return Page();
-        }
-        */
+
         public async Task<IActionResult> OnPostAsync()
         {
             // Perform an initial check to catch FileUpload class
