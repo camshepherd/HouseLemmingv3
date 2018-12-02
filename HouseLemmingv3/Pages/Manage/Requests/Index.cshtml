@@ -151,7 +151,10 @@
                 }
             </p>
             <p class="read-more">
-                <a asp-page="./Edit" asp-route-id="@item.RequestId">Respond to request</a> |
+                @if (Model.ShowEdit)
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.RequestId">Respond to request</a> @:|
+                }
                 <a asp-page="./Details" asp-route-id="@item.RequestId">Request Details</a>
             </p>
         </div>

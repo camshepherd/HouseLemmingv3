@@ -28,6 +28,8 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
         [BindProperty]
         public bool ShowCreate { get; set; }
 
+        public bool ShowEdit { get; set; }
+
         public async Task OnGetAsync()
         {
             Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
@@ -35,11 +37,13 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
             if (Role.Contains("Landlord"))
             {
                 ShowCreate = true;
+                ShowEdit = true;
                 Advert = await _context.Adverts
                     .Include(a => a.ApplicationUser).Where(u => u.ApplicationUserId == UserId).ToListAsync();
             }
             else
             {
+                ShowEdit = false;
                 ShowCreate = false;
                 Advert = await _context.Adverts.Include(a => a.ApplicationUser).ToListAsync();
             }

@@ -38,6 +38,10 @@
             <h2>@Html.DisplayFor(modelItem => item.AddrLine1)</h2>
             <p> @Html.DisplayFor(modelItem => item.DescShort)</p>
             <p class="read-more">
+                @if (Model.ShowEdit)
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> @:|
+                }
                 <a asp-page="./Details" asp-route-id="@item.AdvertId">Read More</a>
             </p>
         </div>

@@ -23,6 +23,8 @@ namespace HouseLemmingv3.Pages.Manage.Requests
         public SelectList Status { get; set; }
         private UserManager<ApplicationUser> _UserManager { get; set; }
 
+        public bool ShowEdit { get; set; }
+
         public IndexModel(HouseLemmingv3.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -37,12 +39,16 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
             var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser)
                 select m;
-            if (Role.Contains("Landlord"))
+            if (Role.Contains("Admin"))
             {
                 requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser).Where(u => u.Advert.ApplicationUserId == UserId)
                     select m;
+                ShowEdit = true;
             }
-
+            else 
+            {
+                ShowEdit = false;
+            }
             if (!String.IsNullOrEmpty(searchString) && searchString.All(Char.IsDigit))
             {
                 int result = Int32.Parse(searchString);
