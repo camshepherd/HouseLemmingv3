@@ -11,6 +11,7 @@ using HouseLemmingv3.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.ComponentModel.DataAnnotations;
 
 namespace HouseLemmingv3.Pages.Manage.Adverts
 {
@@ -32,7 +33,7 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
 
         [BindProperty]
         public Advert Advert { get; set; }
-        
+
         [BindProperty]
         public bool GoLive { get; set; }
 
