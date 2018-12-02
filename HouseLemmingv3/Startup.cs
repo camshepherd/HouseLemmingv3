@@ -71,6 +71,7 @@ namespace HouseLemmingv3
                         options.Conventions.AuthorizePage("/Manage/Requests/Details", "RequireAdminOrLandlordRole");
                         options.Conventions.AuthorizePage("/Manage/Requests/Index", "RequireAdminOrLandlordRole");
                         options.Conventions.AuthorizePage("/Manage/Images/Index","RequireAdminOrLandlordRole");
+                        options.Conventions.AuthorizePage("/Manage/Adverts/Create", "RequireLandlordRole");
                     })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
