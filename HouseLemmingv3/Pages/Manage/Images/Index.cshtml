@@ -40,23 +40,28 @@
             <th>
                 @Html.DisplayNameFor(model => model.Images[0].FileName)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.Images[0].Advert.AddrLine1)
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Images)
         {
-            <tr>
-                <td>
-                    <a asp-page="./Delete" asp-route-id="@item.FileName">Delete</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FileName)
-                </td>
-                <td>
-                    <img src="@Model.ImageHelpers.ViewImage(item.ImageId)"/> 
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.FileName">Delete</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Advert.AddrLine1)
+            </td>
+            <td>
+                <img src="@Model.ImageHelpers.ViewImage(item.ImageId)" />
+            </td>
+        </tr>
         }
     </tbody>
 </table>

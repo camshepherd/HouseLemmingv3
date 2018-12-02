@@ -43,7 +43,7 @@ namespace HouseLemmingv3.Pages.Images
         public async Task OnGetAsync()
         {
             ViewData["AdvertId"] = new SelectList(_context.Adverts.Where(u=>u.ApplicationUserId == UserManager.GetUserAsync(HttpContext.User).Result.Id), "AdvertId", "AddrLine1");
-            Images = await _context.Images.AsNoTracking().ToListAsync();
+            Images = await _context.Images.Include(e => e.Advert).ToListAsync();
         }
         /*
         public IActionResult OnGet()
@@ -58,7 +58,7 @@ namespace HouseLemmingv3.Pages.Images
             // attribute violations.
             if (!ModelState.IsValid)
             {
-                Images = await _context.Images.AsNoTracking().ToListAsync();
+                Images = await _context.Images.Include(a => a.Advert).ToListAsync();
                 return Page();
             }
 
