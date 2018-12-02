@@ -53,6 +53,8 @@ namespace HouseLemmingv3
                 options.AddPolicy("RequireSupervisorRole", policy => policy.RequireRole("Supervisor"));
                 options.AddPolicy("RequireLandlordRole", policy => policy.RequireRole("Landlord"));
                 options.AddPolicy("RequiredStudentRole", policy => policy.RequireRole("Student"));
+                options.AddPolicy("RequireAdminOrLandlordRole",
+                    policy => policy.RequireRole(new string[] {"Landlord", "Admin"}));
             });
 
             services.AddMvc(o =>
@@ -66,13 +68,11 @@ namespace HouseLemmingv3
                     {
                         options.Conventions.AuthorizePage("/Manage/Requests/Edit", "RequireAdminRole");
                         options.Conventions.AuthorizePage("/Manage/Requests/Create", "RequireAdminRole");
-                        options.Conventions.AuthorizePage("/Manage/Requests/Details", "RequireAdminRole");
-                        options.Conventions.AuthorizePage("/Manage/Requests/Details", "RequireLandlordRole");
-                        options.Conventions.AuthorizePage("/Manage/Images/Index","RequireLandlordRole");
-                        options.Conventions.AuthorizePage("/Manage/Images/Index", "RequireAdminRole");
+                        options.Conventions.AuthorizePage("/Manage/Requests/Details", "RequireAdminOrLandlordRole");
+                        options.Conventions.AuthorizePage("/Manage/Requests/Index", "RequireAdminOrLandlordRole");
+                        options.Conventions.AuthorizePage("/Manage/Images/Index","RequireAdminOrLandlordRole");
                     })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
