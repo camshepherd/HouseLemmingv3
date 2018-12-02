@@ -67,11 +67,12 @@ namespace HouseLemmingv3
             .AddRazorPagesOptions(options =>
                     {
                         options.Conventions.AuthorizePage("/Manage/Requests/Edit", "RequireAdminRole");
-                        options.Conventions.AuthorizePage("/Manage/Requests/Create", "RequireAdminRole");
                         options.Conventions.AuthorizePage("/Manage/Requests/Details", "RequireAdminOrLandlordRole");
                         options.Conventions.AuthorizePage("/Manage/Requests/Index", "RequireAdminOrLandlordRole");
                         options.Conventions.AuthorizePage("/Manage/Images/Index","RequireAdminOrLandlordRole");
                         options.Conventions.AuthorizePage("/Manage/Adverts/Create", "RequireLandlordRole");
+                        options.Conventions.AuthorizePage("/Manage/Adverts/Edit", "RequireLandlordRole");
+                        options.Conventions.AuthorizePage("/Manage/Adverts/Delete", "RequireLandlordRole");
                     })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
