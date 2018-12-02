@@ -122,17 +122,7 @@ namespace HouseLemmingv3.Utilities
 
             byte[] ByteArray = _context.Images.FirstOrDefaultAsync(m => m.ImageId == Id).Result.ImageBytes;
 
-            using (MemoryStream ms = new MemoryStream())
-            {
-                
-                using (FileStreamResult FileResult = new FileStreamResult(ms,"image/jpeg")
-                {
-                          
-                }
-                return new FileStreamResult(ms, "image/jpeg");
-            }
-
-            ms.Read((byte[]) ByteArray,0,ByteArray.Length);
+            MemoryStream ms = new MemoryStream((byte[]) ByteArray,0,ByteArray.Length);
             //string thing = ms.ToString();
             
             return new FileStreamResult(ms, "image/jpeg");

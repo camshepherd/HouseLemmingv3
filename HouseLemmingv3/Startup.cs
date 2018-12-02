@@ -56,13 +56,22 @@ namespace HouseLemmingv3
             });
 
             services.AddMvc(o =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
                 o.Filters.Add(new AuthorizeFilter(policy));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            })
+            .AddRazorPagesOptions(options =>
+                    {
+                        options.Conventions.AuthorizePage("/Manage/Requests/Edit", "RequireAdminRole");
+                        options.Conventions.AuthorizePage("/Manage/Requests/Create", "RequireAdminRole");
+                        options.Conventions.AuthorizePage("/Manage/Requests/Details", "RequireAdminRole");
+                        options.Conventions.AuthorizePage("/Manage/Requests/Details", "RequireLandlordRole");
+                        options.Conventions.AuthorizePage("/Manage/Images/Index","RequireLandlordRole");
+                        options.Conventions.AuthorizePage("/Manage/Images/Index", "RequireAdminRole");
+                    })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
 
