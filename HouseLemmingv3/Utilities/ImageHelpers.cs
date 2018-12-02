@@ -117,15 +117,34 @@ namespace HouseLemmingv3.Utilities
         }
 
         [HttpGet]
-        public FileStreamResult ViewImage(int Id)
+        public string ViewImage(int Id)
         {
+            Image Image = _context.Images.FirstOrDefaultAsync(m => m.ImageId == Id).Result;
+            byte[] ImageBytes= Image.ImageBytes;
+            /*
+            if (Image != null)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    await Image.CopyToAsync(stream);
+                    property.Image = stream.ToArray();
+                    property.ImageContentType = Image.ContentType;
+                }
+            }
+            */
 
-            byte[] ByteArray = _context.Images.FirstOrDefaultAsync(m => m.ImageId == Id).Result.ImageBytes;
+            var base64Image = System.Convert.ToBase64String(ImageBytes);
+            return $"data:image/jpeg;base64,{base64Image}";
 
-            MemoryStream ms = new MemoryStream((byte[]) ByteArray,0,ByteArray.Length);
+
+
+
+
+
+            //MemoryStream ms = new MemoryStream((byte[]) ByteArray,0,ByteArray.Length);
             //string thing = ms.ToString();
             
-            return new FileStreamResult(ms, "image/jpeg");
+            //return new FileStreamResult(ms, "image/jpeg");
         }
         
     }
