@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
+using HouseLemmingv3.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -28,10 +29,14 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
         [BindProperty]
         public bool ShowCreate { get; set; }
 
+        [BindProperty]
+        public ImageHelpers ImageHelpers { get; set; }
+
         public bool ShowEdit { get; set; }
 
         public async Task OnGetAsync()
         {
+            ImageHelpers = new ImageHelpers(_context);
             Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
             IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
             if (Role.Contains("Landlord"))
@@ -39,13 +44,13 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
                 ShowCreate = true;
                 ShowEdit = true;
                 Advert = await _context.Adverts
-                    .Include(a => a.ApplicationUser).Where(u => u.ApplicationUserId == UserId).ToListAsync();
+                    .Include(a => a.ApplicationUser).Include(e => e.Images).Where(u => u.ApplicationUserId == UserId).ToListAsync();
             }
             else
             {
                 ShowEdit = false;
                 ShowCreate = false;
-                Advert = await _context.Adverts.Include(a => a.ApplicationUser).ToListAsync();
+                Advert = await _context.Adverts.Include(a => a.ApplicationUser).Include(e => e.Images).ToListAsync();
             }
         }
     }

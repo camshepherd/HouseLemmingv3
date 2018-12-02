@@ -16,21 +16,27 @@
 
 @foreach (var item in Model.Advert)
 {
-    
     <div class="blog-card">
         <div class="meta">
-            <div class="photo" style="background-image: url('../images/house1.jpg')"></div>
+            @if (item.Images.Any())
+            {
+                <div class="photo" style="background-image: url('@Model.ImageHelpers.ViewImage(item.Images[0].ImageId)')"></div>
+            }
+            else
+            {
+                <div class="photo" style="background-image: url('../images/house1.jpg')"></div>
+            }
             <ul class="details">
                 <li class="author">@Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</li>
                 <li class="date">@Html.DisplayFor(modelItem => item.StartDate) - @Html.DisplayFor(modelItem => item.EndDate)</li>
                 <!--<li class="tags">
-                    <ul>
-                        <li><a href="#">Any</a></li>
-                        <li><a href="#">Useful</a></li>
-                        <li><a href="#">Fact</a></li>
-                        <li><a href="#">Here</a></li>
-                    </ul>
-                </li>-->
+            <ul>
+                <li><a href="#">Any</a></li>
+                <li><a href="#">Useful</a></li>
+                <li><a href="#">Fact</a></li>
+                <li><a href="#">Here</a></li>
+            </ul>
+        </li>-->
             </ul>
         </div>
         <div class="description">
