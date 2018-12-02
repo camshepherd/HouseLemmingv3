@@ -39,7 +39,7 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
             var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser)
                 select m;
-            if (Role.Contains("Admin"))
+            if (Role.Contains("Landlord"))
             {
                 requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser).Where(u => u.Advert.ApplicationUserId == UserId)
                     select m;
