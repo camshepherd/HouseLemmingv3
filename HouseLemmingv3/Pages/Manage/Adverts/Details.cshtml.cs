@@ -38,20 +38,29 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            ImageHelpers = new ImageHelpers(_context);
-            Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
-            IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                ImageHelpers = new ImageHelpers(_context);
+                Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
+                IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result)
+                    .Result;
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            if (Role.Contains("Landlord") || Role.Contains("Admin"))
-            {
-                ShowEdit = true;
-                ShowStates = true;
+                if (Role.Contains("Landlord") || Role.Contains("Admin"))
+                {
+                    ShowEdit = true;
+                    ShowStates = true;
+                }
+                else
+                {
+                    ShowStates = false;
+                    ShowEdit = false;
+                }
             }
-            else
+            catch (Exception e)
             {
                 ShowStates = false;
                 ShowEdit = false;
