@@ -50,9 +50,7 @@ namespace HouseLemmingv3
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
-                options.AddPolicy("RequireSupervisorRole", policy => policy.RequireRole("Supervisor"));
                 options.AddPolicy("RequireLandlordRole", policy => policy.RequireRole("Landlord"));
-                options.AddPolicy("RequiredStudentRole", policy => policy.RequireRole("Student"));
                 options.AddPolicy("RequireAdminOrLandlordRole",
                     policy => policy.RequireRole(new string[] {"Landlord", "Admin"}));
             });

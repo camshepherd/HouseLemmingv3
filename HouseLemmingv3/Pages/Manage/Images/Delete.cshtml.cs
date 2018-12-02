@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HouseLemmingv3.Data;
 using HouseLemmingv3.Models;
+using HouseLemmingv3.Utilities;
 
 namespace HouseLemmingv3.Pages.Manage.Images2
 {
@@ -19,11 +20,14 @@ namespace HouseLemmingv3.Pages.Manage.Images2
             _context = context;
         }
 
+        public ImageHelpers ImageHelpers;
+
         [BindProperty]
         public Image Image { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ImageHelpers = new ImageHelpers(_context);
             if (id == null)
             {
                 return NotFound();

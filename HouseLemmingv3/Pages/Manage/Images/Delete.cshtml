@@ -24,12 +24,7 @@
         <dd>
             @Html.DisplayFor(model => model.Image.Advert.AddrCity)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Image.ImageBytes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Image.ImageBytes)
-        </dd>
+        <img class="thumbnail" height="200" src="@Model.ImageHelpers.ViewImage(Model.Image.ImageId)" />
     </dl>
     
     <form method="post">

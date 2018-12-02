@@ -39,6 +39,18 @@
                 </li>-->
             </ul>
         </div>
+        @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).First().Approval == 2)
+        {
+            @:Brand = green
+        }
+        @if (item.Status == 1 && item.Requests.OrderByDescending(y => y.DateCreation).First().Approval == 1)
+        {
+            @:Brand = orange
+        }
+        @if (item.Status == 0 || item.Requests.OrderByDescending(y => y.DateCreation).First().Approval == 0)
+        {
+            @:Brand = red
+        }
         <div class="description">
             <h1>@Html.DisplayFor(modelItem => item.PriceMonthly)</h1>
             <h2>@Html.DisplayFor(modelItem => item.AddrLine1)</h2>
@@ -48,6 +60,8 @@
                 {
                     <a asp-page="./Edit" asp-route-id="@item.AdvertId">Edit</a> @:|
                 }
+
+
                 <a asp-page="./Details" asp-route-id="@item.AdvertId">Read More</a>
             </p>
         </div>
