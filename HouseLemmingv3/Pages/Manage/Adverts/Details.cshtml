@@ -1,4 +1,5 @@
 ﻿@page
+@using Microsoft.CodeAnalysis.CSharp.Syntax
 @using Models
 @model HouseLemmingv3.Pages.Manage.Adverts.DetailsModel
 
@@ -121,16 +122,36 @@
         <dt>
             @Html.DisplayNameFor(model => model.Advert.Status)
         </dt>
-        <dd>
-            @if (Model.Advert.Status == 0)
-            {
-                @:<font color="red">Not Live</font>
-            }
-            @if (Model.Advert.Status == 1)
-            {
-                @:<font color="green">Live</font>
-            }
-        </dd>
+        @if (Model.ShowStates)
+        {
+            <dd>
+                @if (Model.Advert.Status == 0)
+                {
+                    @:<font color="red">Not going live</font>
+                }
+                @if (Model.Advert.Status == 1)
+                {
+                    @:<font color="green">Going live</font>
+                }
+            </dd>
+            <dt>
+                Last request status:
+            </dt>
+            <dd>
+                @if (Model.Advert.Requests.OrderByDescending(r => r.DateCreation).First().Approval == 0)
+                {
+                    @:<font color="red">Declined</font>
+                }
+                @if (Model.Advert.Requests.OrderByDescending(r => r.DateCreation).First().Approval == 1)
+                {
+                    @:<font color="orange">Pending</font>
+                }
+                @if (Model.Advert.Requests.OrderByDescending(r => r.DateCreation).First().Approval == 2)
+                {
+                    @:<font color="green">Approved</font>
+                }
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.Advert.ContactNumber)
         </dt>
