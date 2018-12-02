@@ -96,7 +96,7 @@
 -->
 @foreach (var item in Model.Requests)
 {
-    <div class="blog-card">
+    <div class="blog-card" onclick="window.location.href='./Adverts/Details/?id=@item.AdvertId'">
         <div class="meta">
             @if (item.Advert.Images.Any())
             {
