@@ -57,28 +57,3 @@ body {
 {
     padding: 2px 16px;
 }
-
-img.ten {
-    height: 10%;
-    width: 10%;
-}
-
-img.twenty {
-    height: 20%;
-    width: 20%;
-}
-
-img.thirty {
-    height: 30%;
-    width: 30%;
-}
-
-img.fifty {
-    height: 50%;
-    width: 50%;
-}
-
-img.full {
-    height: 80%;
-    width: 80%;
-}

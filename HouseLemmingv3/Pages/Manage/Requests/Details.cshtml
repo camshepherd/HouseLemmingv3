@@ -29,15 +29,15 @@
         <dd>
             @if (Model.Request.Approval == 0)
             {
-                @:<font color="red">Declined</font>
+                @:<font color="#d6625a">Declined</font>
             }
             @if (Model.Request.Approval == 1)
             {
-                @:Unaddressed
+                @:<font color="#d6a05a">Unadressed</font>
             }
             @if (Model.Request.Approval == 2)
             {
-                @:<font color="green">Approved</font>
+                @:<font color="#5ad67d">Approved</font>
             }
         </dd>
         <dt>

@@ -125,11 +125,11 @@
             <dd>
                 @if (Model.Advert.Status == 0)
                 {
-                    @:<font color="red">Not going live</font>
+                    @:<font color="#d6625a">Not going live</font>
                 }
                 @if (Model.Advert.Status == 1)
                 {
-                    @:<font color="green">Going live</font>
+                    @:<font color="#5ad67d">Going live</font>
                 }
             </dd>
             <dt>
@@ -138,15 +138,15 @@
             <dd>
                 @if (Model.Advert.Requests.OrderByDescending(r => r.DateCreation).First().Approval == 0)
                 {
-                    @:<font color="red">Declined</font>
+                    @:<font color="#d6625a">Declined</font>
                 }
                 @if (Model.Advert.Requests.OrderByDescending(r => r.DateCreation).First().Approval == 1)
                 {
-                    @:<font color="orange">Pending</font>
+                    @:<font color="#d6a05a">Pending</font>
                 }
                 @if (Model.Advert.Requests.OrderByDescending(r => r.DateCreation).First().Approval == 2)
                 {
-                    @:<font color="green">Approved</font>
+                    @:<font color="#5ad67d">Approved</font>
                 }
             </dd>
         }

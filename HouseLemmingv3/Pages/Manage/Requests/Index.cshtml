@@ -11,7 +11,7 @@
     <p>
         Approval Identifier <input type="text" name="SearchString">
         <input type="submit" value="Filter" />
-        (0 = disapproved, 1 = unaddressed, 2 = approved)
+        (<font color="#d6625a"> 0 = declined </font>, <font color="#d6a05a"> 1 = unaddressed </font>, <font color="#5ad67d"> 2 = approved </font>)
     </p>
 </form>
 
@@ -49,35 +49,103 @@
             <h1>
                 @if (item.Approval == 0)
                 {
-                    @:<font color="red">Declined</font>
+                    @:<font color="#d6625a">Declined</font>
                 }
                 @if (item.Approval == 1)
                 {
-                    @:Unaddressed
+                    @::<font color="#d6a05a">Unaddressed</font>
                 }
                 @if (item.Approval == 2)
                 {
-                    @:<font color="green">Approved</font>
+                    @:<font color="#5ad67d">Approved</font>
                 }
             </h1>
             <h2><a asp-page="../Adverts/Details" asp-route-id="@item.AdvertId">@Html.DisplayFor(modelItem => item.Advert.AddrLine1)</a></h2>
-            <p>
-                @if (item.DateCreation <= item.DateResponse)
-                {
-                    @Html.DisplayFor(modelItem => item.Feedback)
-                }
-                @if (item.DateCreation > item.DateResponse)
-                {
-                    
-                }
-            </p>
-            <p class="read-more">
-                @if (Model.ShowEdit)
-                {
-                    <a asp-page="./Edit" asp-route-id="@item.RequestId">Respond to request</a> @:|
-                }
-                <a asp-page="./Details" asp-route-id="@item.RequestId">Request Details</a>
-            </p>
+
+
+
+            @if (item.Advert.Status == 1 && item.Approval == 2)
+            {
+                <p class="green">
+                    @if (item.DateCreation <= item.DateResponse)
+                    {
+                        @Html.DisplayFor(modelItem => item.Feedback)
+                    }
+                    @if (item.DateCreation > item.DateResponse)
+                    {
+
+                    }
+                </p>
+                <p class="read-more">
+                    @if (Model.ShowEdit)
+                    {
+                        <a class="green" asp-page="./Edit" asp-route-id="@item.RequestId">Respond to request</a> @:|
+                    }
+                    <a class="green" asp-page="./Details" asp-route-id="@item.RequestId">Request Details</a>
+                </p>
+            }
+            @if (item.Advert.Status == 1 && item.Approval == 1)
+            {
+                <p class="orange">
+                    @if (item.DateCreation <= item.DateResponse)
+                    {
+                        @Html.DisplayFor(modelItem => item.Feedback)
+                    }
+                    @if (item.DateCreation > item.DateResponse)
+                    {
+
+                    }
+                </p>
+                <p class="read-more">
+                    @if (Model.ShowEdit)
+                    {
+                        <a class="orange" asp-page="./Edit" asp-route-id="@item.RequestId">Respond to request</a> @:|
+                    }
+                    <a class="orange" asp-page="./Details" asp-route-id="@item.RequestId">Request Details</a>
+                </p>
+            }
+            @if (item.Advert.Status == 0)
+            {
+                <p class="grey">
+                    @if (item.DateCreation <= item.DateResponse)
+                    {
+                        @Html.DisplayFor(modelItem => item.Feedback)
+                    }
+                    @if (item.DateCreation > item.DateResponse)
+                    {
+
+                    }
+                </p>
+                <p class="read-more">
+                    @if (Model.ShowEdit)
+                    {
+                        <a class="grey" asp-page="./Edit" asp-route-id="@item.RequestId">Respond to request</a> @:|
+                    }
+                    <a class="grey" asp-page="./Details" asp-route-id="@item.RequestId">Request Details</a>
+                </p>
+            }
+            @if (item.Advert.Status == 1 && item.Approval == 0)
+            {
+                <p class="red">
+                    @if (item.DateCreation <= item.DateResponse)
+                    {
+                        @Html.DisplayFor(modelItem => item.Feedback)
+                    }
+                    @if (item.DateCreation > item.DateResponse)
+                    {
+
+                    }
+                </p>
+                <p class="read-more">
+                    @if (Model.ShowEdit)
+                    {
+                        <a class="red" asp-page="./Edit" asp-route-id="@item.RequestId">Respond to request</a> @:|
+                    }
+                    <a class="red" asp-page="./Details" asp-route-id="@item.RequestId">Request Details</a>
+                </p>
+            }
+
+
         </div>
     </div>
 
