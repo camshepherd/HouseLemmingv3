@@ -42,7 +42,7 @@ namespace HouseLemmingv3.Pages.Manage.Requests
             Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
             IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
             var requests = from m in _context.Requests.Include(r => r.Advert).Include(r => r.Advert.ApplicationUser)
-                .Include(b => b.Advert.Images).GroupBy(n => n.Advert).Select(r => r.OrderByDescending(z => z.DateCreation).First())
+                .Include(b => b.Advert.Images).Where(t => t.Advert.Status == 1).GroupBy(n => n.Advert).Select(r => r.OrderByDescending(z => z.DateCreation).First())
                 select m;
             if (Role.Contains("Landlord"))
             {
