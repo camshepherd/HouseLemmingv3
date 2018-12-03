@@ -89,16 +89,17 @@ body {
     .blog-card .description .read-more {
       text-align: right; }
       .blog-card .description .read-more a {
+        color: #5ad67d;
         display: inline-block;
         position: relative; }
         .blog-card .description .read-more a.green {
-          background: #5ad67d; }
+          color: #5ad67d; }
         .blog-card .description .read-more a.orange {
-          background: #d6a05a; }
+          color: #d6a05a; }
         .blog-card .description .read-more a.red {
-          background: #d6625a; }
+          color: #d6625a; }
         .blog-card .description .read-more a.grey {
-          background: #a2a2a2; }
+          color: #a2a2a2; }
         .blog-card .description .read-more a:after {
           font-family: FontAwesome;
           margin-left: -10px;
@@ -113,21 +114,38 @@ body {
     margin: 1rem 0 0; }
     .blog-card p:first-of-type {
       margin-top: 1.25rem; }
-      .blog-card p:first-of-type:before {
+      .blog-card p:first-of-type.green:before {
         content: "";
         position: absolute;
         height: 5px;
         width: 35px;
         top: -0.75rem;
-        border-radius: 3px; }
-        .blog-card p:first-of-type:before.green {
-          background: #5ad67d; }
-        .blog-card p:first-of-type:before.orange {
-          background: #d6a05a; }
-        .blog-card p:first-of-type:before.red {
-          background: #d6625a; }
-        .blog-card p:first-of-type:before.grey {
-          background: #a2a2a2; }
+        border-radius: 3px;
+        background: #5ad67d; }
+      .blog-card p:first-of-type.orange:before {
+        content: "";
+        position: absolute;
+        height: 5px;
+        width: 35px;
+        top: -0.75rem;
+        border-radius: 3px;
+        background: #d6a05a; }
+      .blog-card p:first-of-type.red:before {
+        content: "";
+        position: absolute;
+        height: 5px;
+        width: 35px;
+        top: -0.75rem;
+        border-radius: 3px;
+        background: #d6625a; }
+      .blog-card p:first-of-type.grey:before {
+        content: "";
+        position: absolute;
+        height: 5px;
+        width: 35px;
+        top: -0.75rem;
+        border-radius: 3px;
+        background: #a2a2a2; }
   .blog-card:hover .details {
     left: 0%; }
   @media (min-width: 640px) {
