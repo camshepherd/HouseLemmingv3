@@ -14,7 +14,6 @@ namespace HouseLemmingv3.Models
     {
         public static async Task InitialiseAsync(ApplicationDbContext context, IServiceProvider serviceProvider)
         {
-            Console.WriteLine("AAAAAAAAAAAAA");
 
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
@@ -31,7 +30,6 @@ namespace HouseLemmingv3.Models
                 }
             }
             {
-                Console.WriteLine("BBBBBBBBBBBBB");
                 //Landlords
                 if (userManager.FindByEmailAsync("randy@tegridy.com").Result == null)
                 {

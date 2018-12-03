@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using HouseLemmingv3.Areas.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -39,22 +40,44 @@ namespace HouseLemmingv3.Pages.Manage.Adverts
         public async Task OnGetAsync()
         {
             ImageHelpers = new ImageHelpers(_context);
-            Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
-            IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result).Result;
-            if (Role.Contains("Landlord"))
+            try
             {
-                ShowCreate = true;
-                ShowEdit = true;
-                Advert = await _context.Adverts
-                    .Include(a => a.ApplicationUser).Include(z => z.Requests).Include(e => e.Images).Where(u => u.ApplicationUserId == UserId).ToListAsync();
+                Guid UserId = _UserManager.GetUserAsync(HttpContext.User).Result.Id;
+                IList<string> Role = _UserManager.GetRolesAsync(_UserManager.GetUserAsync(HttpContext.User).Result)
+                    .Result;
+
+
+                if (Role.Contains("Landlord"))
+                {
+                    ShowCreate = true;
+                    ShowEdit = true;
+                    Advert = await _context.Adverts
+                        .Include(a => a.ApplicationUser).Include(z => z.Requests).Include(e => e.Images)
+                        .Where(u => u.ApplicationUserId == UserId).ToListAsync();
+                }
+                else
+                {
+                    ShowEdit = false;
+                    ShowCreate = false;
+                    Advert = await _context.Adverts.Include(a => a.ApplicationUser).Include(u => u.Requests).Include(x => x.Images)
+                        .Where(q => q.Status == 1)
+                        .Where(c => c.Requests.OrderByDescending(t => t.DateCreation).FirstOrDefault().Approval == 2)
+                        .ToListAsync();
+
+                }
             }
-            else
+            catch (Exception e)
             {
-                ShowEdit = false;
-                ShowCreate = false;
-                Advert = await _context.Adverts.Include(a => a.ApplicationUser).Include(u => u.Requests).Where(q => q.Status == 1)
-                    .Where(c => c.Requests.OrderByDescending(t => t.DateCreation).FirstOrDefault().Approval == 2).Include(x => x.Images).ToListAsync();
+                    ShowEdit = false;
+                    ShowCreate = false;
+                    Advert = await _context.Adverts.Include(a => a.ApplicationUser).Include(u => u.Requests).Include(x => x.Images)
+                        .Where(q => q.Status == 1)
+                        .Where(c => c.Requests.OrderByDescending(t => t.DateCreation).FirstOrDefault().Approval == 2)
+                        .ToListAsync();
+
             }
+            
+ 
         }
     }
 }
